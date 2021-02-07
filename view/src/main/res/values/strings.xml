@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+  <string name="complete">完成</string>
+  <string name="confirm">确定</string>
+  <string name="send">发送</string>
+  <string name="cancel">取消</string>
+  <string name="open_permissions_hint">请开通相关权限，否则无法正常使用本应用</string>
+  <string name="to_permissions">去授权</string>
+  <string name="permissions_success">[%s]权限获取成功</string>
+  <string name="permissions_fail">[%s]权限获取失败</string>
+  <string name="permissions_hint">获取[%s]权限失败: 将导致[%s]功能无法正常使用，需要到设置页面手动授权</string>
+
+</resources>

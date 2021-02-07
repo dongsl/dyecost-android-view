@@ -1,0 +1,271 @@
+<resources>
+
+
+  <style name="AlertActivity_AlertStyle" parent="android:Theme.Dialog">
+    <!--<item name="android:windowAnimationStyle">@style/AnimAlert</item>-->
+    <!-- 边框 -->
+    <item name="android:windowFrame">@null</item>
+    <!-- 是否浮现在activity之上 -->
+    <item name="android:windowIsFloating">true</item>
+    <!-- 半透明 -->
+    <item name="android:windowIsTranslucent">true</item>
+    <!-- 无标题 -->
+    <item name="android:windowNoTitle">true</item>
+    <!-- 背景透明 -->
+    <item name="android:windowBackground">@android:color/transparent</item>
+    <!-- 模糊 -->
+    <item name="android:backgroundDimEnabled">true</item>
+  </style>
+
+  <!-- pop -->
+  <style name="pop_plus">
+    <item name="android:windowEnterAnimation">@anim/anim_pop_plus_show</item>
+    <item name="android:windowExitAnimation">@anim/anim_pop_plus_hide</item>
+  </style>
+
+  <!-- 边框,阴影,图文imageView -->
+  <declare-styleable name="dy_view">
+    <!-- 形状 -->
+    <attr name="dy_resize_view" format="boolean" /> <!-- 调整view大小 -->
+    <attr name="dy_shape">
+      <enum name="rectangle" value="1" /> <!-- 默认 - 矩形 -->
+      <enum name="fillet" value="2" /> <!-- 圆角 -->
+      <enum name="circular" value="3" /> <!-- 圆形 -->
+    </attr>
+    <!-- 圆角方向, shape=FILLET时生效, 默认四角都是圆角, 如果设置则只有对应方向是圆角-->
+    <attr name="dy_fillet_direction">
+      <flag name="left_top" value="1" /> <!-- 左上 -->
+      <flag name="left_bottom" value="2" /> <!-- 左下 -->
+      <flag name="right_top" value="4" /> <!-- 右上 -->
+      <flag name="right_bottom" value="8" /> <!-- 右下 -->
+    </attr>
+    <attr name="dy_fillet_radius" format="dimension" /> <!-- 圆角半径 -->
+    <!-- 背景资源 -->
+    <attr name="dy_bg_resource" format="reference" /> <!-- 背景图片 -->
+    <!-- 背景色 -->
+    <attr name="dy_bg_color" format="color" /> <!-- 背景颜色 -->
+    <attr name="dy_bg_color_alpha" format="integer" /> <!-- 背景色透明度 -->
+    <!-- 背景色 - 渐变 -->
+    <attr name="dy_bg_color_gd"> <!-- 背景色渐变方向 -->
+      <enum name="horizontal" value="1" />
+      <enum name="vertical" value="2" />
+    </attr>
+    <attr name="dy_bg_color_start" format="color" /> <!-- 背景色开始颜色 -->
+    <attr name="dy_bg_color_end" format="color" /> <!-- 背景色结束颜色 -->
+
+    <!-- 文字 -->
+    <attr name="dy_text" format="string" localization="suggested" /> <!-- 文字 -->
+    <attr name="dy_fixed_text" format="boolean" /> <!-- 固定文字 -->
+    <attr name="dy_text_color" format="color" /> <!-- 文字颜色 -->
+    <attr name="dy_text_size" format="dimension" /> <!-- 文字字号 -->
+    <attr name="dy_text_bold" format="boolean" /> <!-- 文字加粗 -->
+    <attr name="dy_text_strike_thru" format="boolean" /> <!-- 文字删除线 -->
+    <attr name="dy_text_underline" format="boolean" /> <!-- 文字下划线 -->
+    <attr name="dy_text_spacing" format="dimension" /> <!-- 文字间距 - 横向 -->
+    <attr name="dy_text_location"><!-- 文字位置 -->
+      <flag name="center" value="1" /> <!-- 中间 -->
+      <flag name="center_horizontal" value="2" />
+      <flag name="center_vertical" value="4" />
+      <flag name="top" value="8" />
+      <flag name="bottom" value="16" />
+      <flag name="left" value="32" />
+      <flag name="right" value="64" />
+      <flag name="start" value="128" /> <!-- 起始位置 - view左上 -->
+      <!-- 特殊位置,在自定义view中进行计算，dyView中不进行计算 -->
+      <flag name="center_top_half" value="256" /> <!-- 水平居中,top+文字高度的一半(进度条使用,DyView中不进行计算) -->
+    </attr>
+    <!-- 文字 - 渐变 -->
+    <attr name="dy_text_color_gd"> <!-- 文字颜色渐变方向 -->
+      <enum name="horizontal" value="1" />
+      <enum name="vertical" value="2" />
+    </attr>
+    <attr name="dy_text_color_start" format="color" /> <!-- 文字颜色开始颜色 -->
+    <attr name="dy_text_color_end" format="color" /> <!-- 文字颜色结束颜色 -->
+
+    <!-- 边框 -->
+    <attr name="dy_border_width" format="dimension" /> <!-- 边框宽度 -->
+    <attr name="dy_border_color" format="color" /> <!-- 边框颜色 -->
+    <!-- 边框 - 渐变 -->
+    <attr name="dy_border_color_gd"> <!-- 边框颜色渐变方向 -->
+      <enum name="horizontal" value="1" />
+      <enum name="vertical" value="2" />
+    </attr>
+    <attr name="dy_border_color_start" format="color" /> <!-- 边框颜色开始颜色 -->
+    <attr name="dy_border_color_end" format="color" /> <!-- 边框颜色结束颜色 -->
+    <!-- 阴影 -->
+    <attr name="dy_shadow_size" format="dimension" /> <!-- 阴影大小 -->
+    <attr name="dy_shadow_color" format="color" /> <!-- 阴影颜色 -->
+    <attr name="dy_shadow_alpha" format="integer" /> <!-- 阴影透明度 -->
+    <!-- 按下效果 -->
+    <attr name="dy_down_style"> <!-- 按下样式 -->
+      <enum name="override" value="1" /> <!-- 默认 - 在view最顶层覆盖一层 -->
+      <enum name="background" value="2" /> <!-- 替换背景（颜色或背景图，暂时只实现背景色） -->
+      <enum name="resize" value="3" /> <!-- 重置view大小 -->
+    </attr>
+    <attr name="dy_down_color" format="color" /> <!-- 按下颜色 -->
+    <attr name="dy_down_color_alpha" format="integer" /> <!-- 按下透明度 -->
+    <attr name="dy_down_resize_ratio" format="float" /> <!-- 按下重置size比例(放大或缩小) -->
+    <attr name="dy_open_selected" format="boolean" /> <!-- 开启选中功能 -->
+    <attr name="dy_selected" format="boolean" /> <!-- 选中状态 -->
+    <attr name="dy_radio_group_id" format="integer" /> <!-- 选中状态 -->
+    <!-- 按下效果 - 渐变 -->
+    <attr name="dy_down_color_gd"> <!-- 按下效果颜色渐变方向 -->
+      <enum name="horizontal" value="1" />
+      <enum name="vertical" value="2" />
+    </attr>
+    <attr name="dy_down_color_start" format="color" /> <!-- 按下效果颜色开始颜色 -->
+    <attr name="dy_down_color_end" format="color" /> <!-- 按下效果颜色结束颜色 -->
+  </declare-styleable>
+
+  <!-- 三角形属性 -->
+  <declare-styleable name="dy_triangle_view">
+    <attr name="dytrv_direction">
+      <enum name="top" value="0" />
+      <enum name="bottom" value="1" />
+      <enum name="right" value="2" />
+      <enum name="left" value="3" />
+    </attr>
+  </declare-styleable>
+
+  <!-- 边框,阴影等LinearLayout -->
+  <declare-styleable name="dy_linear_layout">
+
+  </declare-styleable>
+
+  <!-- 进度条view属性 -->
+  <declare-styleable name="dy_pb_view">
+    <!-- 形状 -->
+    <attr name="dypbv_shape">
+      <enum name="rectangle_h" value="1" />
+      <enum name="rectangle_h_image" value="2" />
+      <enum name="circular" value="3" />
+    </attr>
+    <attr name="dypbv_direction"> <!-- 进度条方向 -->
+      <enum name="along" value="1" />
+      <enum name="inverse" value="2" />
+    </attr>
+    <!-- 进度条分割线 -->
+    <attr name="dypbv_cut_ratio" format="float" /> <!-- 分割线比例(百分比) -->
+    <attr name="dypbv_cut_width" format="dimension" /> <!-- 分割线宽度 -->
+    <attr name="dypbv_cut_color" format="color" /> <!-- 分割线颜色 -->
+    <!-- 进度条 -->
+    <attr name="dypbv_color" format="color" /> <!-- 进度条颜色 -->
+    <attr name="dypbv_ratio_max" format="integer" /> <!-- 进度条最大比例 -->
+    <attr name="dypbv_ratio" format="integer" /> <!-- 进度条比例 -->
+    <attr name="dypbv_ratio_type"> <!-- 进度条比例类型(百分比,秒) -->
+      <enum name="percentage" value="1" />
+      <enum name="seconds" value="2" />
+    </attr>
+    <attr name="dypbv_ratio_mode"> <!-- 进度条进度方式 -->
+      <enum name="incr" value="1" />
+      <enum name="decr" value="2" />
+    </attr>
+    <attr name="dypbv_alpha" format="integer" /> <!-- 进度条透明度 -->
+
+    <!-- 圆形进度条 -->
+    <attr name="dypbv_outer_ring_bg_color" format="color" /> <!-- 外环背景色 -->
+    <attr name="dypbv_outer_ring_width" format="dimension" /> <!-- 外环宽度，默认整体高度的25% -->
+
+    <!-- 图片 -->
+    <attr name="dypbv_image_resource" format="reference" /> <!-- 进度条图片资源 -->
+    <attr name="dypbv_image_file_path" format="string" /> <!-- 进度条图片文件路径 -->
+  </declare-styleable>
+
+  <!-- 不规则按钮属性 -->
+  <declare-styleable name="dy_ib_view">
+    <attr name="dyibv_btn_text_1" format="string" />
+    <attr name="dyibv_btn_text_2" format="string" />
+    <attr name="dyibv_btn_text_3" format="string" />
+  </declare-styleable>
+
+  <!-- 自定义textView -->
+  <declare-styleable name="dy_text_view">
+    <attr name="dytv_remove_line_spacing" format="boolean" /> <!-- 移除行间距 -->
+  </declare-styleable>
+
+  <!-- 自定义EditText -->
+  <declare-styleable name="dy_edit_text">
+    <attr name="dyet_remove_underline" format="boolean" /> <!-- 移除下划线 -->
+  </declare-styleable>
+
+  <!-- 边框,阴影,图文imageView -->
+  <declare-styleable name="dy_image_view">
+    <!-- 形状 -->
+    <attr name="dyiv_zoom_ratio" format="float" /> <!-- 缩放比例-优先级-低 -->
+    <attr name="dyiv_auto_zoom" format="boolean" /> <!-- 自动缩放-优先级高 -->
+    <attr name="dyiv_scale_type"> <!-- 图片缩放类型 -->
+      <enum name="proportional" value="1" /> <!-- 按照view高宽等比例缩放 -->
+      <enum name="self" value="2" /> <!-- 按照view高宽调整图片大小 -->
+    </attr>
+
+    <!-- 背景色 -->
+    <attr name="dyiv_bg_color" format="color" /> <!-- 背景颜色 -->
+    <attr name="dyiv_bg_color_alpha" format="integer" /> <!-- 背景色透明度 -->
+    <!-- 边框 -->
+    <attr name="dyiv_border_width" format="dimension" /> <!-- 边框宽度 -->
+    <attr name="dyiv_border_color" format="color" /> <!-- 边框颜色 -->
+    <!-- 阴影 -->
+    <attr name="dyiv_shadow_size" format="dimension" /> <!-- 阴影大小 -->
+    <attr name="dyiv_shadow_color" format="color" /> <!-- 阴影颜色 -->
+    <attr name="dyiv_shadow_alpha" format="integer" /> <!-- 阴影透明度 -->
+    <!-- 按下事件 -->
+    <attr name="dyiv_down_color" format="color" /> <!-- 按下颜色 -->
+  </declare-styleable>
+
+  <!-- 弧形布局属性 -->
+  <declare-styleable name="dy_arc_view">
+    <!-- 弧形方向 -->
+    <attr name="dyav_arc_direction">
+      <enum name="top" value="0" />
+      <enum name="bottom" value="1" />
+    </attr>
+    <attr name="dyav_arc_height" format="dimension" /> <!-- 弧形高度 -->
+  </declare-styleable>
+
+  <!-- 标签页属性 -->
+  <declare-styleable name="dy_tab_page_view">
+    <attr name="dytpv_lr_scroll" format="boolean" /> <!-- 左右滑动 -->
+    <attr name="dytpv_current_item" format="integer" /> <!-- 当前页 从0开始 -->
+    <attr name="dytpv_load_page_limit" format="integer" /> <!-- 加载页数限制 -->
+    <attr name="dytpv_title_width" format="dimension" /> <!-- 标题宽度 -->
+    <attr name="dytpv_title_height" format="dimension" /> <!-- 标题高度 -->
+    <attr name="dytpv_title_weight" format="float" /> <!-- 标题weight -->
+    <attr name="dytpv_title_text_size" format="dimension" /> <!-- 标题文字字号 -->
+    <attr name="dytpv_title_margins_top" format="dimension" /> <!-- 标题间距 -->
+    <attr name="dytpv_title_margins_bottom" format="dimension" /> <!-- 标题间距 -->
+    <attr name="dytpv_title_margins_left" format="dimension" /> <!-- 标题间距 -->
+    <attr name="dytpv_title_margins_right" format="dimension" /> <!-- 标题间距 -->
+  </declare-styleable>
+
+  <!-- viewPager属性 -->
+  <declare-styleable name="dy_view_pager">
+    <attr name="dyvp_lr_scroll" format="boolean" /> <!-- 左右滑动 -->
+  </declare-styleable>
+
+  <!-- 提示气泡BadgeView属性 -->
+  <declare-styleable name="dy_badge_view">
+    <attr name="dybv_type">
+      <enum name="content_point" value="0" /> <!-- 提示气泡(带内容) -->
+      <enum name="point" value="1" /> <!-- 提示气泡(无内容) -->
+    </attr>
+  </declare-styleable>
+
+  <!-- 多种类view -->
+  <declare-styleable name="dy_multiple_view">
+    <attr name="dymv_shape">
+      <enum name="arrow_label" value="1" /> <!-- 箭头标签 -->
+      <enum name="banner_i" value="2" /> <!-- 横幅 -->
+      <enum name="banner_silk" value="3" /> <!-- 锦旗 -->
+    </attr>
+  </declare-styleable>
+
+  <!-- 线条view -->
+  <declare-styleable name="dy_line_view">
+    <attr name="dylv_shape">
+      <enum name="horizontal" value="1" /> <!-- 水平线 -->
+      <enum name="vertical" value="2" /> <!-- 垂直线 -->
+    </attr>
+  </declare-styleable>
+
+
+</resources>

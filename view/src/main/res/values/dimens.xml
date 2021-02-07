@@ -1,0 +1,57 @@
+<resources>
+
+  <!-- 布局间距 外边距 -->
+  <dimen name="layout_margin">16dp</dimen> <!-- 布局间距 -->
+  <dimen name="layout_margin_left">16dp</dimen> <!-- 布局居左间距 -->
+  <dimen name="layout_margin_right">16dp</dimen> <!-- 布局居右间距 -->
+  <dimen name="layout_margin_top">16dp</dimen> <!-- 布局居上间距 -->
+  <dimen name="layout_margin_bottom">16dp</dimen> <!-- 布局居下间距 -->
+
+  <!-- 文字大小 -->
+  <dimen name="text_size12">12dp</dimen>
+  <dimen name="text_size14">14dp</dimen>
+  <dimen name="text_size16">16dp</dimen> <!-- 默认应用字体大小 -->
+
+  <!-- 模糊度 -->
+  <integer name="image_blur">30</integer> <!-- 图片模糊度 -->
+
+  <!-- 表情盘和扩展盘大小和间距 -->
+  <dimen name="disc_height">220dp</dimen> <!-- 盘布局整体高度 盘中的布局不得高于此值 -->
+  <!-- disc_height >= stickers_view_height + disc_page_point_size + disc_menu_height -->
+  <!-- 表情盘或扩展盘内容高度 = disc_height - (disc_page_point_size + disc_menu_height) -->
+  <dimen name="disc_page_point_size">25dp</dimen> <!-- 分页点大小 -->
+  <dimen name="disc_menu_height">35dp</dimen> <!-- 菜单布局高度 -->
+  <dimen name="emoji_size">32dp</dimen> <!-- emoji大小 -->
+  <dimen name="stickers_margin_x">5dp</dimen> <!-- 每个表情的水平间距   1间距1-->
+  <dimen name="stickers_menu_ic_size">20dp</dimen> <!-- 表情盘菜单图标大小 -->
+  <dimen name="stickers_menu_ic_margin">8dp</dimen> <!-- 表情盘菜单图标间距 -->
+  <dimen name="stickers_send_btn_width">50dp</dimen> <!-- 表情盘发送按钮宽度 -->
+  <dimen name="extend_btn_margin_top">3dp</dimen> <!-- 扩展盘按钮居上间距 -->
+  <dimen name="extend_fillet">6dp</dimen> <!-- IM扩展盘按钮框圆角 -->
+
+
+  <integer name="animation_default_duration">300</integer>
+  <dimen name="height_actionsheet_title">40dp</dimen>
+  <dimen name="height_alert_button">45dp</dimen>
+  <dimen name="height_alert_title">60dp</dimen>
+  <dimen name="marginBottom_actionsheet_msg">14dp</dimen>
+  <dimen name="marginBottom_alert_msg">25dp</dimen>
+  <dimen name="margin_actionsheet_left_right">10dp</dimen>
+  <dimen name="margin_alert_left_right">36dp</dimen>
+  <dimen name="radius_alertview">15px</dimen>
+  <dimen name="size_divier">1dp</dimen>
+  <dimen name="textSize_actionsheet_msg">14sp</dimen>
+  <dimen name="textSize_actionsheet_title">14sp</dimen>
+  <dimen name="textSize_alert_button">18sp</dimen>
+  <dimen name="textSize_alert_msg">15sp</dimen>
+  <dimen name="textSize_alert_title">22sp</dimen>
+
+  <dimen name="alert_edit_fillet">3dp</dimen> <!-- 编辑框圆角 -->
+  <dimen name="alert_edit_border">0.5dp</dimen> <!-- 编辑框边框 -->
+  <dimen name="alert_edit_margin">10dp</dimen> <!-- 弹出编辑框间距 -->
+  <dimen name="alert_edit_padding">5dp</dimen> <!-- 编辑框间距 -->
+
+  <!-- 输入输出长度限制和行数限制 -->
+  <integer name="in_default_max_line">1</integer> <!-- 默认输入最大行数 -->
+  <integer name="in_default_max_length">20</integer> <!-- 默认输入最大长度 -->
+</resources>

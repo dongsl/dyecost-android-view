@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="gray">#808080</color> <!-- 灰色 -->
+  <color name="light_grey_high">#a8a8a8</color> <!-- 浅灰色 -->
+  <color name="light_grey">#d3d3d3</color> <!-- 浅灰色 -->
+  <color name="gainsboro">#e2e2e2</color> <!-- 亮灰色 -->
+</resources>

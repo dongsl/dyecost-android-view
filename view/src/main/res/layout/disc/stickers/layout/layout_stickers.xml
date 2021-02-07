@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+  <data />
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/disc_height"
+    android:orientation="vertical">
+
+    <!-- 表情内容 -->
+    <com.eco.view.disc.stickers.view.StickersView
+      android:id="@+id/stickers_view"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
+
+    <!-- 表情分页布局 -->
+    <LinearLayout
+      android:id="@+id/page_point_layout"
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/disc_page_point_size"
+      android:gravity="center"
+      android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <include layout="@layout/hline_fine" />
+
+    <!-- 表情盘菜单布局 -->
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/disc_menu_height"
+      android:layout_gravity="bottom"
+      android:gravity="center_vertical"
+      android:orientation="horizontal">
+
+      <!-- 添加表情包布局 -->
+      <LinearLayout
+        android:id="@+id/add_stickers_package_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center">
+
+        <ImageView
+          android:layout_width="@dimen/stickers_menu_ic_size"
+          android:layout_height="@dimen/stickers_menu_ic_size"
+          android:layout_marginLeft="@dimen/stickers_menu_ic_margin"
+          android:layout_marginRight="@dimen/stickers_menu_ic_margin"
+          android:src="@drawable/dy_ic_plus_black" />
+
+        <include layout="@layout/vline_fine" />
+      </LinearLayout>
+
+      <!-- 表情盘菜单整体布局 -->
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <!-- 水平滑动 阻尼效果 -->
+        <com.eco.view.DyHorizontalDampenScrollView
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:scrollbars="none">
+          <!-- 表情盘菜单列表布局 -->
+          <LinearLayout
+            android:id="@+id/menu_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+          </LinearLayout>
+        </com.eco.view.DyHorizontalDampenScrollView>
+      </LinearLayout>
+
+      <!-- 发送按钮布局布局 -->
+      <LinearLayout
+        android:id="@+id/send_btn"
+        android:layout_width="@dimen/stickers_send_btn_width"
+        android:layout_height="match_parent"
+        android:gravity="left|center_vertical">
+
+        <include layout="@layout/vline_fine" />
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_gravity="center"
+          android:gravity="center"
+          android:text="@string/send"
+          android:textColor="@color/text"
+          android:textSize="@dimen/text_size14" />
+      </LinearLayout>
+    </LinearLayout>
+
+  </LinearLayout>
+</layout>

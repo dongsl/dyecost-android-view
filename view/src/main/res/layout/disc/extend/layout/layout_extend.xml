@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/disc_height"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/layout_margin_top"
+            android:layout_marginBottom="@dimen/layout_margin_bottom"
+            android:orientation="vertical">
+
+            <!-- 内容布局 -->
+            <com.eco.view.disc.extend.view.ExtendView
+                android:id="@+id/extend_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp" />
+
+            <!-- 分页布局 -->
+            <LinearLayout
+                android:id="@+id/page_point_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/disc_page_point_size"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

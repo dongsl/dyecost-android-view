@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+  <data />
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- 标签title -->
+    <LinearLayout
+      android:id="@+id/tab_page_title_layout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <LinearLayout
+      android:id="@+id/tab_page_vp_header_layout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:orientation="horizontal">
+
+    </LinearLayout>
+
+
+    <com.eco.view.DyViewPager
+      android:id="@+id/tab_page_view_pager"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_weight="1" />
+
+    <LinearLayout
+      android:id="@+id/tab_page_vp_footer_layout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:orientation="horizontal">
+
+    </LinearLayout>
+
+  </LinearLayout>
+</layout>
