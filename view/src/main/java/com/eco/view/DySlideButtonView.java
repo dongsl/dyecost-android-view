@@ -5,7 +5,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+
 import androidx.annotation.Nullable;
+
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -112,7 +114,7 @@ public class DySlideButtonView extends View {
     setClickable(true);
     mPaint = new Paint();
     mScroller = new Scroller(context);
-    view_height_int = DensityHandler.dip2px(context, VIEW_HEIGHT);
+    view_height_int = (int) DensityHandler.dip2px(context, VIEW_HEIGHT);
     strokeCheckedLineColor_int = Color.parseColor(strokeCheckedLineColor);
     strokeNoCheckedLineColor_int = Color.parseColor(strokeNoCheckedLineColor);
     strokeCheckedSolidColor_int = Color.parseColor(strokeCheckedSolidColor);

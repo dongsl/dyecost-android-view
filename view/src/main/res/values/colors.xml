@@ -9,7 +9,7 @@
 
   <color name="merge_image_bg">#CBCCCF</color> <!-- 合并图片背景色 -->
 
-
+  <color name="loading">#1390ea</color> <!-- loading颜色 -->
   <!-- alert -->
   <color name="bgColor_actionsheet_cancel_nor">#ffffff</color>
   <color name="bgColor_alert_button_press">#EAEAEA</color>

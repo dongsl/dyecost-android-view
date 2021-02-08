@@ -1,20 +1,24 @@
-package com.eco.view;
+package com.eco.view.fragment;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import com.eco.view.R;
 import com.eco.view.alert.AlertCallBack;
 import com.eco.view.alert.AlertHandler;
 import com.eco.view.alert.AlertView;
 import com.eco.view.handler.PopHandler;
 import com.eco.view.handler.ToastHandler;
 
-public class MainActivity extends AppCompatActivity {
+public class Fragment1 extends Fragment {
 
   private Context context;
   //pop, toast
@@ -33,34 +37,35 @@ public class MainActivity extends AppCompatActivity {
   public Button alert_view_button;
 
   @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-    context = this;
-    success_button = findViewById(R.id.success_button);
-    warning_button = findViewById(R.id.warning_button);
-    error_button = findViewById(R.id.error_button);
-    pop_button = findViewById(R.id.pop_button);
-    alert_confirm_button = findViewById(R.id.alert_confirm_button);
-    alert_bottom_confirm_button = findViewById(R.id.alert_bottom_confirm_button);
-    alert_msg_button = findViewById(R.id.alert_msg_button);
-    alert_dialog_button = findViewById(R.id.alert_dialog_button);
-    alert_edit_button = findViewById(R.id.alert_edit_button);
-    alert_list_button = findViewById(R.id.alert_list_button);
-    alert_view_button = findViewById(R.id.alert_view_button);
+  public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    View view = inflater.inflate(R.layout.fragement_main1, null);
+
+    context = getContext();
+    success_button = view.findViewById(R.id.success_button);
+    warning_button = view.findViewById(R.id.warning_button);
+    error_button = view.findViewById(R.id.error_button);
+    pop_button = view.findViewById(R.id.pop_button);
+    alert_confirm_button = view.findViewById(R.id.alert_confirm_button);
+    alert_bottom_confirm_button = view.findViewById(R.id.alert_bottom_confirm_button);
+    alert_msg_button = view.findViewById(R.id.alert_msg_button);
+    alert_dialog_button = view.findViewById(R.id.alert_dialog_button);
+    alert_edit_button = view.findViewById(R.id.alert_edit_button);
+    alert_list_button = view.findViewById(R.id.alert_list_button);
+    alert_view_button = view.findViewById(R.id.alert_view_button);
     init();
     bindEvent();
+    return view;
   }
 
   public void init() {
-    popHandler = new PopHandler(this);
+    popHandler = new PopHandler(getActivity());
     popHandler.init(R.layout.pop_plus);
   }
 
   public void bindEvent() {
-    success_button.setOnClickListener(v -> ToastHandler.success(this, "成功"));
-    warning_button.setOnClickListener(v -> ToastHandler.warning(this, "警告"));
-    error_button.setOnClickListener(v -> ToastHandler.error(this, "失败"));
+    success_button.setOnClickListener(v -> ToastHandler.success(context, "成功"));
+    warning_button.setOnClickListener(v -> ToastHandler.warning(context, "警告"));
+    error_button.setOnClickListener(v -> ToastHandler.error(context, "失败"));
     pop_button.setOnClickListener(v -> popHandler.show(v));
 
     alert_confirm_button.setOnClickListener(v -> AlertHandler.confirm(context, "是否下载", new AlertCallBack() {
@@ -129,8 +134,5 @@ public class MainActivity extends AppCompatActivity {
         .setCancelText("确认")
         .build()
         .show());
-
-
   }
-
 }

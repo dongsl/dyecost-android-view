@@ -1,6 +1,45 @@
 <resources>
 
+  <!-- loading -->
+  <declare-styleable name="DyLoadingView">
+    <attr name="minWidth" format="dimension" />
+    <attr name="maxWidth" format="dimension" />
+    <attr name="minHeight" format="dimension" />
+    <attr name="maxHeight" format="dimension" />
+    <attr name="indicatorName" format="string" />
+    <attr name="indicatorColor" format="color" />
+  </declare-styleable>
 
+  <style name="DyLoadingView">
+    <item name="minWidth">48dip</item>
+    <item name="maxWidth">48dip</item>
+    <item name="minHeight">48dip</item>
+    <item name="maxHeight">48dip</item>
+    <item name="indicatorName">BallPulseIndicator</item>
+  </style>
+
+  <style name="DyLoadingView.Large">
+    <item name="minWidth">76dip</item>
+    <item name="maxWidth">76dip</item>
+    <item name="minHeight">76dip</item>
+    <item name="maxHeight">76dip</item>
+    <item name="indicatorName">BallPulseIndicator</item>
+  </style>
+
+  <style name="DyLoadingView.Small">
+    <item name="minWidth">24dip</item>
+    <item name="maxWidth">24dip</item>
+    <item name="minHeight">24dip</item>
+    <item name="maxHeight">24dip</item>
+    <item name="indicatorName">BallPulseIndicator</item>
+  </style>
+
+  <!-- loading dialog -->
+  <style name="loadingDialog" parent="Theme.AppCompat.Dialog">
+    <item name="android:windowBackground">@android:color/transparent</item>
+  </style>
+
+  <!-- alert -->
   <style name="AlertActivity_AlertStyle" parent="android:Theme.Dialog">
     <!--<item name="android:windowAnimationStyle">@style/AnimAlert</item>-->
     <!-- 边框 -->
@@ -16,6 +55,76 @@
     <!-- 模糊 -->
     <item name="android:backgroundDimEnabled">true</item>
   </style>
+
+  <!-- navigation -->
+  <declare-styleable name="bottom_nav_bar_view">
+    <!--底部导航栏高度-->
+    <attr name="nav_height" format="dimension" />
+    <!--底部导航栏背景-->
+    <attr name="nav_background" format="color" />
+    <!--Tab字体大小-->
+    <attr name="tab_text_size" format="dimension" />
+    <!--Tab文字距Tab图标的距离-->
+    <attr name="tab_text_top" format="dimension" />
+    <!--Tab图标大小-->
+    <attr name="tab_icon_size" format="dimension" />
+    <!--Tab未选中字体颜色-->
+    <attr name="tab_normal_color" format="color" />
+    <!--Tab选中字体颜色-->
+    <attr name="tab_select_color" format="color" />
+    <!--提示红点的大小-->
+    <attr name="hint_point_size" format="dimension" />
+    <!--消息红点的大小-->
+    <attr name="msg_point_size" format="dimension" />
+    <!--提示红点距Tab图标的距离-->
+    <attr name="hint_point_left" format="dimension" />
+    <!--消息红点距Tab图标的距离-->
+    <attr name="msg_point_left" format="dimension" />
+    <!--提示红点距离顶部的距离-->
+    <attr name="hint_point_top" format="dimension" />
+    <!--消息红点距顶部的距离-->
+    <attr name="msg_point_top" format="dimension" />
+    <!--消息红点数字字体大小-->
+    <attr name="msg_point_text_size" format="dimension" />
+    <!--分割线高度-->
+    <attr name="line_height" format="dimension" />
+    <!--分割线颜色-->
+    <attr name="line_color" format="color" />
+    <!--是否有paddingBottom-->
+    <attr name="has_padding" format="boolean" />
+    <!--中间图片的大小-->
+    <attr name="add_icon_size" format="dimension" />
+    <!--底部导航栏和加号的高度  加号会居中-->
+    <attr name="add_layout_height" format="dimension" />
+    <!--添加按钮距离底部的距离-->
+    <attr name="add_layout_bottom" format="dimension" />
+    <!--图标显示-->
+    <attr name="scale_type">
+      <flag name="CENTER_INSIDE" value="0" />
+      <flag name="CENTER_CROP" value="1" />
+      <flag name="CENTER" value="2" />
+      <flag name="FIT_CENTER" value="3" />
+      <flag name="FIT_END" value="4" />
+      <flag name="FIT_START" value="5" />
+      <flag name="FIT_XY" value="6" />
+      <flag name="MATRIX" value="7" />
+    </attr>
+    <!--图标显示-->
+    <attr name="add_layout_rule">
+      <flag name="RULE_CENTER" value="0" />
+      <flag name="RULE_BOTTOM" value="1" />
+    </attr>
+    <!-- true 点击加号切换fragment
+     false 点击加号不切换fragment进行其他操作（跳转界面等）-->
+    <attr name="add_as_fragment" format="boolean" />
+    <attr name="add_select_text_color" format="color" />
+    <attr name="add_normal_text_color" format="color" />
+    <attr name="add_text_size" format="dimension" />
+    <!--加号文字距离顶部加号的距离-->
+    <attr name="add_text_top_margin" format="dimension" />
+    <!--是否和其他tab文字底部对齐-->
+    <attr name="add_align_bottom" format="dimension" />
+  </declare-styleable>
 
   <!-- pop -->
   <style name="pop_plus">

@@ -10,6 +10,7 @@ import android.widget.PopupWindow;
 
 import com.eco.anim.animator.DyAnimator;
 import com.eco.anim.animator.DyAnimatorBuilder;
+import com.eco.view.R;
 
 /**
  * 弹框
@@ -30,11 +31,11 @@ public class PopHandler {
   }
 
   public void init(int viewId) {
-    init(viewId, com.eco.basics.R.style.pop_plus, 300l);
+    init(viewId, R.style.pop_plus, 300l);
   }
 
   public void init(int viewId, Long duration) {
-    init(viewId, com.eco.basics.R.style.pop_plus, duration);
+    init(viewId, R.style.pop_plus, duration);
   }
 
   /**
