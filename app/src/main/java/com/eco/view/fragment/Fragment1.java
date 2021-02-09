@@ -1,138 +1,121 @@
 package com.eco.view.fragment;
 
 
-import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.Editable;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.eco.basics.handler.JsonHandler;
+import com.eco.basics.handler.ResourcesHandler;
+import com.eco.view.DyEditText;
 import com.eco.view.R;
-import com.eco.view.alert.AlertCallBack;
-import com.eco.view.alert.AlertHandler;
-import com.eco.view.alert.AlertView;
-import com.eco.view.handler.PopHandler;
+import com.eco.view.constants.DyConstants;
+import com.eco.view.disc.extend.ExtendLayout;
+import com.eco.view.disc.extend.model.Extend;
+import com.eco.view.disc.stickers.StickersLayout;
+import com.eco.view.disc.stickers.model.Stickers;
 import com.eco.view.handler.ToastHandler;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Fragment1 extends Fragment {
 
-  private Context context;
-  //pop, toast
-  private Button success_button;
-  private Button warning_button;
-  private Button error_button;
-  private Button pop_button;
-  private PopHandler popHandler;
-  //alert
-  public Button alert_confirm_button;
-  public Button alert_bottom_confirm_button;
-  public Button alert_msg_button;
-  public Button alert_dialog_button;
-  public Button alert_edit_button;
-  public Button alert_list_button;
-  public Button alert_view_button;
+  private DyEditText imContentEdit;
+  private ImageView stickersImage;
+  private ImageView extendImage;
+  private StickersLayout stickersLayout; //表情盘布局VIEW
+  private ExtendLayout extendLayout; //扩展盘布局
 
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragement_main1, null);
+    imContentEdit = view.findViewById(R.id.im_content_edit);
+    stickersImage = view.findViewById(R.id.stickers_image);
+    extendImage = view.findViewById(R.id.extend_image);
+    stickersLayout = view.findViewById(R.id.stickers_layout);
+    extendLayout = view.findViewById(R.id.extend_layout);
 
-    context = getContext();
-    success_button = view.findViewById(R.id.success_button);
-    warning_button = view.findViewById(R.id.warning_button);
-    error_button = view.findViewById(R.id.error_button);
-    pop_button = view.findViewById(R.id.pop_button);
-    alert_confirm_button = view.findViewById(R.id.alert_confirm_button);
-    alert_bottom_confirm_button = view.findViewById(R.id.alert_bottom_confirm_button);
-    alert_msg_button = view.findViewById(R.id.alert_msg_button);
-    alert_dialog_button = view.findViewById(R.id.alert_dialog_button);
-    alert_edit_button = view.findViewById(R.id.alert_edit_button);
-    alert_list_button = view.findViewById(R.id.alert_list_button);
-    alert_view_button = view.findViewById(R.id.alert_view_button);
-    init();
-    bindEvent();
+    stickersImage.setOnClickListener(v -> toggle(1));
+    extendImage.setOnClickListener(v -> toggle(2));
+
+    //退格键
+    imContentEdit.setBackspaceListener(() -> {
+      Integer cursorPosition = imContentEdit.getSelectionStart(); //光标位置
+      if (cursorPosition <= 0) return true;
+      Editable editable = imContentEdit.getText();
+      Integer deletePosition = cursorPosition - 1; //删除位置
+      if (']' == editable.charAt(deletePosition)) { //匹配是否符合emoji格式
+        Integer prefixPosition = editable.toString().substring(0, deletePosition).lastIndexOf("[");
+        String stickersName = editable.toString().substring(prefixPosition, cursorPosition); //表情名称
+        if (stickersLayout.getOutputStickersMap().containsKey(stickersName)) { //如果与map匹配 则增加删除范围，否则删除一位
+          editable.delete(prefixPosition, cursorPosition); //删除表情'[微笑]'
+          return true;
+        }
+      }
+      imContentEdit.onKeyDown(KeyEvent.KEYCODE_DEL, new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL)); //调用系统退格键
+      return true;
+    });
+
+    initStickers(); //生成表情盘
+    initExtend(); //生成扩展盘
     return view;
   }
 
-  public void init() {
-    popHandler = new PopHandler(getActivity());
-    popHandler.init(R.layout.pop_plus);
+  private void initStickers() {
+    //表情内容，key:表情类型，value:表情内容列表
+    Map<Integer, List<Stickers>> stickersContentMap = new LinkedHashMap() {{
+      put(DyConstants.STICKERS_TYPE.APP_EMOJI.v(), ResourcesHandler.loadJson("json", "AppEmoji", Stickers.class));
+    }};
+    Map<Integer, List<Stickers>> stickersContentMap1 = new LinkedHashMap() {{
+      put(DyConstants.STICKERS_TYPE.SYS_EMOJI.v(), ResourcesHandler.loadJson("json", "SystemEmoji", Stickers.class));
+    }};
+
+    //表情盘map，key:表情盘菜单图标, value:(key:表情类型，value:表情内容列表)
+    Map<Bitmap, Map<Integer, List<Stickers>>> stickersMap = new LinkedHashMap<>();
+    stickersMap.put(BitmapFactory.decodeResource(getResources(), R.drawable.ic_stickers, new BitmapFactory.Options()), stickersContentMap);
+    stickersMap.put(BitmapFactory.decodeResource(getResources(), R.drawable.ic_mind_off, new BitmapFactory.Options()), stickersContentMap1);
+    //生成表情盘
+    stickersLayout.init(getParentFragmentManager()).targetView(imContentEdit).addStickers(stickersMap).sendClick(v -> ToastHandler.success(getContext(), "发送内容:" + imContentEdit.getText().toString())).build();
   }
 
-  public void bindEvent() {
-    success_button.setOnClickListener(v -> ToastHandler.success(context, "成功"));
-    warning_button.setOnClickListener(v -> ToastHandler.warning(context, "警告"));
-    error_button.setOnClickListener(v -> ToastHandler.error(context, "失败"));
-    pop_button.setOnClickListener(v -> popHandler.show(v));
 
-    alert_confirm_button.setOnClickListener(v -> AlertHandler.confirm(context, "是否下载", new AlertCallBack() {
-      @Override
-      public void onFirst() {
-        ToastHandler.success(context, "下载成功");
+  private void initExtend() {
+    //生成扩展盘
+    List<Extend> extendList = (List<Extend>) ResourcesHandler.loadJson("json", "ImExtend", Extend.class);
+    extendLayout.init(getParentFragmentManager()).addExtend(extendList).addExtendClickListener(extendType -> {
+      if (extendType == 1) {
+        ToastHandler.success(getContext(), "打开照相机");
+      } else if (extendType == 2) {
+        ToastHandler.success(getContext(), "打开相册");
+      } else {
+        ToastHandler.success(getContext(), "打开其他");
       }
-
-      @Override
-      public void onCancel() {
-        ToastHandler.error(context, "下载失败");
-      }
-    }));
-
-    alert_bottom_confirm_button.setOnClickListener(v -> AlertHandler.confirmBottom(context, "确认要下载文件吗", "确认下载", new AlertCallBack() {
-      @Override
-      public void onFirst() {
-        ToastHandler.success(context, "下载成功");
-      }
-
-      @Override
-      public void onCancel() {
-        ToastHandler.error(context, "下载失败");
-      }
-    }));
-
-    alert_msg_button.setOnClickListener(v -> AlertHandler.alertMsgForOne(context, "您的帐号在其它地方登录，您已被迫下线", "重新登录", new AlertCallBack() {
-      @Override
-      public void onFirst() {
-        ToastHandler.success(context, "登录成功");
-      }
-    }));
-
-    alert_dialog_button.setOnClickListener(v -> {
-      View view = LayoutInflater.from(context).inflate(R.layout.layout_alert, null);
-      AlertHandler.view(context, view, Boolean.TRUE).show();
-    });
-
-    alert_edit_button.setOnClickListener(v -> AlertHandler.editText(context, "昵称", "dyecost", 10, 1, new AlertCallBack() {
-      @Override
-      public void onFirst(String content) {
-        ToastHandler.success(context, "修改成功:" + content);
-      }
-    }));
-
-    alert_list_button.setOnClickListener(v -> {
-      new AlertView.Builder()
-          .setContext(context)
-          .setStyle(AlertView.Style.ActionSheet)
-          .setTitle("列表弹框")
-          .setDestructive("按钮1", "按钮2")
-          .setOthers("其他按钮1", "其他按钮2", "其他按钮3")
-          .setCancelText("确认")
-          .setOnItemClickListener((o, position) -> {
-            ToastHandler.success(context, o + ":" + position);
-          })
-          .build()
-          .show();
-    });
-
-    alert_view_button.setOnClickListener(v -> new AlertView.Builder()
-        .setContext(context)
-        .setStyle(AlertView.Style.Alert)
-        .setTitle("自定义弹框")
-        .setMessage("可选择弹出AlertView.Style.*, 设置标题,描述,按钮")
-        .setCancelText("确认")
-        .build()
-        .show());
+    }).build();
   }
+
+  private void toggle(Integer discType) {
+    if (discType == 1) {
+      stickersLayout.setVisibility(View.VISIBLE);
+      extendLayout.setVisibility(View.GONE);
+    } else if (discType == 2) {
+      stickersLayout.setVisibility(View.GONE);
+      extendLayout.setVisibility(View.VISIBLE);
+    }
+  }
+
+
 }

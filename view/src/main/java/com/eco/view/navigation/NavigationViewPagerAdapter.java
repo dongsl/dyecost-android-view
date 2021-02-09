@@ -5,16 +5,17 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
+
 
 import java.util.List;
 
-public class BottomNavViewPagerAdapter extends FragmentStatePagerAdapter { //FragmentPagerAdapter
+public class NavigationViewPagerAdapter extends FragmentPagerAdapter { //FragmentPagerAdapter
 
   private List<Fragment> fragments;
 
-  public BottomNavViewPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
+  public NavigationViewPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
     super(fm);
     this.fragments = fragments;
   }

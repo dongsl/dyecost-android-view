@@ -5,156 +5,110 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-  <ScrollView
+
+  <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="match_parent">
+      android:layout_height="match_parent"
+      android:orientation="vertical">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/light_grey"
         android:orientation="vertical">
-      <!-- pop,toast -->
+
       <LinearLayout
-          android:layout_width="match_parent"
+          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_margin="10dp"
-          android:background="@color/light_grey"
+          android:layout_weight="1"
           android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pop, Toast"
+            android:text="DyEditText, 表情盘, 扩展盘"
             android:textSize="22dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Toast是基于https://github.com/grenderg/toasty进行的二次封装"
+            android:layout_marginBottom="6dp"
+            android:text="1.DyEditText增加了退格键处理，软键盘监听，移除下划线等功能"
             android:textSize="13dp" />
 
-        <LinearLayout
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:layout_marginBottom="6dp"
+            android:text="2.表情盘可以传入图片列表生成，开发聊天功能时与DyEditText联合使用,针对移除表情做了部分优化，用户点击+按钮添加表情包的功能可以对StickersLayout.addStickersPackageBtn进行监听(此功能还未实现,可继承StickersLayout类进行完善)"
+            android:textSize="13dp" />
 
-          <Button
-              android:id="@+id/success_button"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_margin="5dp"
-              android:text="成功提示" />
-
-          <Button
-              android:id="@+id/warning_button"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_margin="5dp"
-              android:text="警告提示" />
-
-          <Button
-              android:id="@+id/error_button"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_margin="5dp"
-              android:text="失败提示" />
-
-          <Button
-              android:id="@+id/pop_button"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_margin="5dp"
-              android:text="Pop" />
-        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:text="3.扩展盘可以根据json文件生成任意数量和页数的布局,图片不存在时使用默认图片,文字可以不配置"
+            android:textSize="13dp" />
       </LinearLayout>
 
-      <!-- alert -->
+
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_margin="10dp"
-          android:background="@color/light_grey"
           android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Alert"
-            android:textSize="22dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="13dp" />
-
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_margin="6dp"
             android:orientation="horizontal">
-
-          <Button
-              android:id="@+id/alert_confirm_button"
-              android:layout_width="wrap_content"
+          <!-- 文字输入 -->
+          <com.eco.view.DyEditText
+              android:id="@+id/im_content_edit"
+              android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:layout_margin="5dp"
-              android:text="确认框" />
+              android:layout_gravity="center"
+              android:layout_marginRight="10dp"
+              android:layout_weight="1"
+              android:imeOptions="actionSend"
+              android:singleLine="true"
+              android:textColor="@color/text"
+              android:textSize="16dp"
+              app:dy_bg_color="#ffffff"
+              app:dy_fillet_radius="6dp"
+              app:dy_shape="fillet" />
 
-          <Button
-              android:id="@+id/alert_bottom_confirm_button"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_margin="5dp"
-              android:text="底部确认框" />
+          <ImageView
+              android:id="@+id/stickers_image"
+              android:layout_width="26dp"
+              android:layout_height="26dp"
+              android:layout_marginRight="10dp"
+              android:src="@drawable/ic_stickers" />
 
-          <Button
-              android:id="@+id/alert_msg_button"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_margin="5dp"
-              android:text="消息框" />
-
-          <Button
-              android:id="@+id/alert_dialog_button"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_margin="5dp"
-              android:text="dialog" />
+          <ImageView
+              android:id="@+id/extend_image"
+              android:layout_width="26dp"
+              android:layout_height="26dp"
+              android:src="@drawable/ic_plus_circle" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <!-- 表情盘布局 -->
+        <com.eco.view.disc.stickers.StickersLayout
+            android:id="@+id/stickers_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal">
+            android:background="#F3F3F3" />
 
-          <Button
-              android:id="@+id/alert_edit_button"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_margin="5dp"
-              android:text="编辑框" />
-
-          <Button
-              android:id="@+id/alert_list_button"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_margin="5dp"
-              android:text="列表弹框" />
-
-          <Button
-              android:id="@+id/alert_view_button"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_margin="5dp"
-              android:text="自定义弹框" />
-
-        </LinearLayout>
+        <!-- 扩展盘布局 -->
+        <com.eco.view.disc.extend.ExtendLayout
+            android:id="@+id/extend_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F3F3F3"
+            android:visibility="gone" />
       </LinearLayout>
 
     </LinearLayout>
-  </ScrollView>
+  </LinearLayout>
 </LinearLayout>

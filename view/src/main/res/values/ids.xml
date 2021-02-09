@@ -1,3 +1,4 @@
 <resources>
   <item name="badge_view_parent_layout" type="id" />
+  <item name="tag_view_position" type="id"></item>
 </resources>

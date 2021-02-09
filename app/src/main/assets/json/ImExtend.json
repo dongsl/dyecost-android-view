@@ -1,0 +1,21 @@
+[
+  { "type" : "1", "name" : "photo", "image":"ic_photo" },
+  { "type" : "2", "name" : "shoot", "image":"ic_camera" },
+  { "type" : "3", "name" : "video_call", "image":"ic_video" },
+  { "type" : "4", "name" : "position", "image":"ic_position" },
+  { "type" : "5", "name" : "不存在的名称", "image":"不存在的图片"},
+  { "type" : "5", "name" : "collection", "image":"ic_collection"},
+  { "type" : "5", "name" : "collection", "image":"ic_collection"},
+  { "type" : "5", "name" : "collection", "image":"ic_collection"},
+  { "type" : "5", "name" : "collection", "image":"ic_collection"},
+  { "type" : "5", "name" : "collection", "image":"ic_collection"},
+  { "type" : "5", "name" : "collection", "image":"ic_collection"},
+  { "type" : "5", "name" : "collection", "image":"ic_collection"},
+  { "type" : "5", "name" : "collection", "image":"ic_collection"},
+  { "type" : "5", "name" : "collection", "image":"ic_collection"},
+  { "type" : "5", "name" : "collection", "image":"ic_collection"},
+  { "type" : "5", "name" : "collection", "image":"ic_collection"},
+  { "type" : "5", "name" : "collection", "image":"ic_collection"},
+  { "type" : "5", "name" : "collection", "image":"ic_collection"},
+  { "type" : "5", "name" : "collection", "image":"ic_collection"}
+]

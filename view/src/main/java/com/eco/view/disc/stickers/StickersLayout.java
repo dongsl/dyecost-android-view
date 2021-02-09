@@ -151,7 +151,7 @@ public class StickersLayout extends LinearLayout {
     float menuIcSize = DensityHandler.getDimenPx(context, R.dimen.stickers_menu_ic_size); //表情盘菜单图标大小
     float menuIcMargin = DensityHandler.getDimenPx(context, R.dimen.stickers_menu_ic_margin); //表情盘菜单图标间距
     DyLinearLayoutBuilder menuIcLayoutBuilder = DyLinearLayoutBuilder.init(context).layout(v -> v.wh(ViewHandler.WRAP_CONTENT, ViewHandler.MATCH_PARENT).gravity(Gravity.CENTER)); //表情盘单个菜单图标布局
-    DyImageViewBuilder menuIcImageBuilder = DyImageViewBuilder.init(context).image(R.drawable.dy_ic_plus_square).layout(v -> v.wh((int) menuIcSize, (int) menuIcSize).marginsX((int) menuIcMargin)); //表情包单个菜单图标
+    DyImageViewBuilder menuIcImageBuilder = DyImageViewBuilder.init(context).layout(v -> v.wh((int) menuIcSize, (int) menuIcSize).marginsX((int) menuIcMargin)); //表情包单个菜单图标
     //生成表情盘菜单和内容
     for (Map.Entry<Bitmap, Map<Integer, List<Stickers>>> stickersEntry : stickersMap.entrySet()) {
       View vlineFineView = View.inflate(context, R.layout.vline_fine, null); //竖杠

@@ -1,3 +1,9 @@
 <resources>
   <string name="app_name">dyecost-android-view</string>
+
+  <string name="photo">照片</string>
+  <string name="shoot">拍摄</string>
+  <string name="video_call">视频通话</string>
+  <string name="position">位置</string>
+  <string name="collection">收藏</string>
 </resources>

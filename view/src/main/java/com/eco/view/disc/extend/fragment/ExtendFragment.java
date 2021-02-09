@@ -2,6 +2,7 @@ package com.eco.view.disc.extend.fragment;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
@@ -121,26 +122,30 @@ public class ExtendFragment extends DyFragment<FragementExtendBinding> implement
 
     //生成布局
     DyLinearLayoutBuilder extendRowLayoutBuilder = DyLinearLayoutBuilder.init(context)
-      .orientation(LinearLayout.HORIZONTAL)
-      .layout(v -> v.wh(ViewHandler.MATCH_PARENT, (int) extendRowLayoutHeight).gravity(Gravity.LEFT)); //扩展每行布局
+        .orientation(LinearLayout.HORIZONTAL)
+        .layout(v -> v.wh(ViewHandler.MATCH_PARENT, (int) extendRowLayoutHeight).gravity(Gravity.LEFT)); //扩展每行布局
 
     DyLinearLayoutBuilder extendBtnLayoutBuilder = DyLinearLayoutBuilder.init(context)
-      .orientation(LinearLayout.VERTICAL)
-      .layout(v -> v.wh((int) extendBtnWidth, ViewHandler.MATCH_PARENT).gravity(Gravity.CENTER)); //每个按钮的布局
+        .orientation(LinearLayout.VERTICAL)
+        .layout(v -> v.wh((int) extendBtnWidth, ViewHandler.MATCH_PARENT).gravity(Gravity.CENTER)); //每个按钮的布局
 
     DyLinearLayoutBuilder extendBtnImageLayoutBuilder = DyLinearLayoutBuilder.init(context).orientation(LinearLayout.VERTICAL)
-      .layout(v -> v.wh((int) extendBtnImageLayoutSize).gravity(Gravity.CENTER)
-        .shape(null, DyViewState.SHAPE_TYPE.FILLET.v(), DensityHandler.getDimenPx(context, R.dimen.extend_fillet), null)
-        .bgColor(ContextCompat.getColor(context, R.color.white))
-        .down(DyViewState.DOWN_TYPE.OVERRIDE.v(), ContextCompat.getColor(context, R.color.btn_pressed_default_bg), null, null)); //每个按钮图片的布局
+        .layout(v -> v.wh((int) extendBtnImageLayoutSize).gravity(Gravity.CENTER)
+            .shape(null, DyViewState.SHAPE_TYPE.FILLET.v(), DensityHandler.getDimenPx(context, R.dimen.extend_fillet), null)
+            .bgColor(ContextCompat.getColor(context, R.color.white))
+            .down(DyViewState.DOWN_TYPE.OVERRIDE.v(), ContextCompat.getColor(context, R.color.btn_pressed_default_bg), null, null)); //每个按钮图片的布局
     DyImageViewBuilder extendBtnImageBuilder = DyImageViewBuilder.init(context).layout(v -> (v.wh((int) extendBtnImageSize))); //每个按钮的图标
     DyTextViewBuilder extendBtnTextBuilder = DyTextViewBuilder.init(context).layout(v -> v.textSize(extendBtnTextSize).textColor(textHintColor).marginsY((int) extendBtnTextMarginTop, null)); //每个按钮的文字
 
     for (List<Extend> extendRowList : extendPageList) {
       LinearLayout extendRowLayout = extendRowLayoutBuilder.build(); //扩展每行布局
       for (Extend extend : extendRowList) {
-        DyImageView extendBtnImageView = extendBtnImageBuilder.image(ResourcesHandler.getDrawableId(context, extend.getImage())).build(); //每个按钮的图标
-        DyTextView extendBtnTextView = extendBtnTextBuilder.layout(v -> v.text(StringHandler.getValue(context, ResourcesHandler.getStringId(context, extend.getName())))).build(); //每个按钮的文字
+        int extendBtnImageId = ResourcesHandler.getDrawableId(context, extend.getImage());
+        extendBtnImageId = extendBtnImageId == 0 ? ResourcesHandler.getDrawableId(context, "dy_ic_default") : extendBtnImageId;
+        DyImageView extendBtnImageView = extendBtnImageBuilder.image(extendBtnImageId).build(); //每个按钮的图标
+        int extendBtnTextId = ResourcesHandler.getStringId(context, extend.getName());
+        String extendBtnText = extendBtnTextId == 0 ? "" : StringHandler.getValue(context, extendBtnTextId);
+        DyTextView extendBtnTextView = extendBtnTextBuilder.layout(v -> v.text(extendBtnText)).build(); //每个按钮的文字
         DyLinearLayout extendBtnImageLayout = extendBtnImageLayoutBuilder.build(extendBtnImageView);
         DyLinearLayout extendBtnLayout = extendBtnLayoutBuilder.build(extendBtnImageLayout, extendBtnTextView);
         EventBindingAdapter.clickInterval(extendBtnImageLayout, v -> extendClickListener.click(extend.getType()), Time.DEFAULT_CLICK_MTI); //绑定点击事件

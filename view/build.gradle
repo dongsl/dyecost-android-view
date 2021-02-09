@@ -50,7 +50,7 @@ dependencies {
     'com.github.dongsl:dyecost-android-basics:1.0.0',
     'com.github.dongsl:dyecost-android-anim:1.0.0'
   )
-
+  implementation 'com.github.Vincent7Wong:EasyNavigation:2.0.0'
   //准备转移到本地来的第三方库
   api(
     'q.rorbin:badgeview:1.1.3', //消息提示,气泡数量
