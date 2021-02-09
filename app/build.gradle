@@ -18,9 +18,6 @@ android {
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
   }
-  dataBinding {
-    enabled = true
-  }
   buildTypes {
     release {
       minifyEnabled false
@@ -33,7 +30,7 @@ android {
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation project(path: ':view')
-  implementation(
+  api(
     'com.github.dongsl:dyecost-android-basics:1.0.0',
   )
 

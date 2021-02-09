@@ -1,8 +1,11 @@
 package com.eco.view.disc.stickers.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -11,9 +14,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.eco.view.R;
-import com.eco.basics.base.DyFragment;
 import com.eco.view.constants.DyConstants;
-import com.eco.view.databinding.FragementStickersBinding;
 import com.eco.view.handler.ViewHandler;
 import com.eco.view.DyImageView;
 import com.eco.view.builder.DyImageViewBuilder;
@@ -26,8 +27,9 @@ import java.util.List;
 /**
  * 表情盘内容页面
  */
-public class StickersFragment extends DyFragment<FragementStickersBinding> implements View.OnTouchListener {
+public class StickersFragment extends Fragment implements View.OnTouchListener {
 
+  private Context context;
   private LinearLayout stickersLayout;
   private List<List<Stickers>> stickersPageList;
   private int stickersType; //表情类型
@@ -76,31 +78,17 @@ public class StickersFragment extends DyFragment<FragementStickersBinding> imple
   }
 
   @Override
-  protected void initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    init(R.layout.fragement_stickers); //初始化 + 绑定
-  }
-
-
-  /**
-   * 初始化变量（参数，控件，viewModel等）
-   */
-  @Override
-  public void initVariable() {
-    //获取参数
-
-    //获取控件
-    stickersLayout = binding.stickersLayout;
-
-    //初始化hander
-
-    //初始化其他
-
+  public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    View view = inflater.inflate(R.layout.fragement_stickers, null);
+    context = getActivity();
+    stickersLayout = view.findViewById(R.id.stickers_layout);
+    initControl();
+    return view;
   }
 
   /**
    * 初始化表情控件（设置不能在layout中设置的属性，样式，计算像素等）
    */
-  @Override
   public void initControl() {
     stickersLayout.removeAllViews();
     ViewHandler.setLayoutParams(stickersLayout, ViewHandler.MATCH_PARENT, ViewHandler.MATCH_PARENT, null, (int) stickersLayoutMarginX, 0, (int) stickersLayoutMarginX, 0); //重置表情盘 高宽,位置,间距
@@ -130,41 +118,6 @@ public class StickersFragment extends DyFragment<FragementStickersBinding> imple
       stickersLayout.addView(stickersRowLayout);
     }
   }
-
-  /**
-   * 初始化数据（设置固定数据，获取首次打开页面加载的数据）
-   */
-  @Override
-  public void initData() {
-  }
-
-  /**
-   * 绑定观察者监听(liveData，databinding)
-   */
-  @Override
-  public void bindObserve() {
-
-  }
-
-  /**
-   * 绑定事件监听
-   */
-  @Override
-  public void bindEvent() {
-  }
-
-  /**
-   * 服务器获取数据
-   */
-  @Override
-  public void getData() {
-    try {
-      //finishLoadData(); //完成加载数据
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-
 
   @Override
   public void onViewCreated(View view, Bundle savedInstanceState) {

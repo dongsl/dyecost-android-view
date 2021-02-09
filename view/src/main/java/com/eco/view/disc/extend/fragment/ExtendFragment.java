@@ -1,10 +1,12 @@
 package com.eco.view.disc.extend.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -13,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.eco.basics.base.DyFragment;
 import com.eco.view.R;
 import com.eco.basics.binding.EventBindingAdapter;
 import com.eco.basics.constants.Time;
@@ -28,7 +29,6 @@ import com.eco.view.DyViewState;
 import com.eco.view.builder.DyImageViewBuilder;
 import com.eco.view.builder.DyLinearLayoutBuilder;
 import com.eco.view.builder.DyTextViewBuilder;
-import com.eco.view.databinding.FragementExtendBinding;
 import com.eco.view.disc.extend.model.Extend;
 import com.eco.view.disc.extend.view.ExtendView;
 
@@ -38,8 +38,9 @@ import java.util.List;
 /**
  * 扩展盘内容页面
  */
-public class ExtendFragment extends DyFragment<FragementExtendBinding> implements View.OnTouchListener {
+public class ExtendFragment extends Fragment implements View.OnTouchListener {
 
+  private Context context;
   private LinearLayout extendLayout;
   private List<List<Extend>> extendPageList;
 
@@ -93,30 +94,17 @@ public class ExtendFragment extends DyFragment<FragementExtendBinding> implement
   }
 
   @Override
-  protected void initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    init(R.layout.fragement_extend); //初始化 + 绑定
-  }
-
-
-  /**
-   * 初始化变量（参数，控件，viewModel等）
-   */
-  @Override
-  public void initVariable() {
-    //获取参数
-
-    //获取控件
-    extendLayout = binding.extendLayout;
-
-    //初始化hander
-
-    //初始化其他
+  public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    View view = inflater.inflate(R.layout.fragement_extend, null);
+    context = getActivity();
+    extendLayout = view.findViewById(R.id.extend_layout);
+    initControl();
+    return view;
   }
 
   /**
    * 初始化控件（设置不能在layout中设置的属性，样式，计算像素等）
    */
-  @Override
   public void initControl() {
     extendLayout.removeAllViews();
 
@@ -152,40 +140,6 @@ public class ExtendFragment extends DyFragment<FragementExtendBinding> implement
         extendRowLayout.addView(extendBtnLayout);
       }
       extendLayout.addView(extendRowLayout);
-    }
-  }
-
-  /**
-   * 初始化数据（设置固定数据，获取首次打开页面加载的数据）
-   */
-  @Override
-  public void initData() {
-  }
-
-  /**
-   * 绑定观察者监听(liveData，databinding)
-   */
-  @Override
-  public void bindObserve() {
-
-  }
-
-  /**
-   * 绑定事件监听
-   */
-  @Override
-  public void bindEvent() {
-  }
-
-  /**
-   * 服务器获取数据
-   */
-  @Override
-  public void getData() {
-    try {
-      //finishLoadData(); //完成加载数据
-    } catch (Exception e) {
-      e.printStackTrace();
     }
   }
 

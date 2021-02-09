@@ -14,10 +14,6 @@ import android.widget.ImageView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.eco.basics.handler.JsonHandler;
 import com.eco.basics.handler.ResourcesHandler;
 import com.eco.view.DyEditText;
 import com.eco.view.R;
