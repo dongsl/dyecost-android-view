@@ -87,7 +87,7 @@ public class DyLoadingView extends View {
     mMaxHeight = 48;
 
     final TypedArray a = context.obtainStyledAttributes(
-      attrs, R.styleable.DyLoadingView, defStyleAttr, defStyleRes);
+        attrs, R.styleable.DyLoadingView, defStyleAttr, defStyleRes);
 
     mMinWidth = a.getDimensionPixelSize(R.styleable.DyLoadingView_minWidth, mMinWidth);
     mMaxWidth = a.getDimensionPixelSize(R.styleable.DyLoadingView_maxWidth, mMaxWidth);
@@ -159,9 +159,7 @@ public class DyLoadingView extends View {
     StringBuilder drawableClassName = new StringBuilder();
     if (!indicatorName.contains(".")) {
       String defaultPackageName = getClass().getPackage().getName();
-      drawableClassName.append(defaultPackageName)
-        .append(".indicators")
-        .append(".");
+      drawableClassName.append(defaultPackageName).append(".indicators").append(".");
     }
     drawableClassName.append(indicatorName);
     try {
@@ -221,7 +219,7 @@ public class DyLoadingView extends View {
   @Override
   protected boolean verifyDrawable(Drawable who) {
     return who == mIndicator
-      || super.verifyDrawable(who);
+        || super.verifyDrawable(who);
   }
 
   void startAnimation() {
@@ -272,8 +270,7 @@ public class DyLoadingView extends View {
       final int scrollX = getScrollX() + getPaddingLeft();
       final int scrollY = getScrollY() + getPaddingTop();
 
-      invalidate(dirty.left + scrollX, dirty.top + scrollY,
-        dirty.right + scrollX, dirty.bottom + scrollY);
+      invalidate(dirty.left + scrollX, dirty.top + scrollY, dirty.right + scrollX, dirty.bottom + scrollY);
     } else {
       super.invalidateDrawable(dr);
     }

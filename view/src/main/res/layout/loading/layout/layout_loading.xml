@@ -1,24 +1,30 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:layout_gravity="center">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-  <!--app:indicatorColor="@color/loading"-->
-  <com.eco.loading.DyLoadingView
-    android:id="@+id/loading_view"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:visibility="visible"
-    app:indicatorColor="@color/loading"
-    app:indicatorName="BallClipRotateMultipleIndicator" />
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:gravity="center"
+      android:orientation="vertical">
+    <!--app:indicatorColor="@color/loading"-->
+    <com.eco.view.loading.DyLoadingView
+        android:id="@+id/loading_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:indicatorColor="@color/loading"
+        app:indicatorName="BallClipRotateMultipleIndicator" />
 
-  <TextView
-    android:id="@+id/loading_text"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/loading_view"
-    android:text="加载中..."
-    android:textColor="@color/white"
-    android:textStyle="bold" />
+    <TextView
+        android:id="@+id/loading_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loading_view"
+        android:gravity="center"
+        android:text="加载中..."
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+  </LinearLayout>
 </RelativeLayout>

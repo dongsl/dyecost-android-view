@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
   private NavigationBarBuilder navigationBarBuilder;
   private NavigationBarView bottomNavBarView;
 
-  private String[] tabText = {"消息", "联系人", "游戏", "发现", "我"};
+  private String[] tabText = {"消息", "控件", "dy-view1", "dy-view2", "dy-view3"};
   private int[] iconOff = {R.drawable.ic_message_off, R.drawable.ic_contacts_off, R.drawable.ic_mind_off, R.drawable.ic_star_off, R.drawable.ic_my_off}; //未选中icon
   private int[] iconOn = {R.drawable.ic_message_on, R.drawable.ic_contacts_on,R.drawable.ic_mind_on, R.drawable.ic_star_on, R.drawable.ic_my_on}; //选中时icon
   private List<Fragment> fragments = new ArrayList<>(Arrays.asList(new Fragment1(), new Fragment2(), new Fragment3(), new Fragment2(), new Fragment1()));

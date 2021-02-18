@@ -32,7 +32,7 @@ import lombok.Getter;
 /**
  * 不规则按钮
  * 使用PATH通过线条连接出不规则形状的按钮
- * 绘制顺序: 线条 -> 记录位置 -> 文字
+ * 绘制顺序: 线条 -> 记录位置(获取点击位置) -> 文字
  * 注：不使用dyView中的基础绘制功能
  * -----------------demo-----------------
  * <DyIrregularButtonView
@@ -321,7 +321,7 @@ public class DyIrregularButtonView extends View implements DyBaseView {
           Region region = regionList.get(i);
           if (region.contains((int) x, (int) y)) {
             btnDownIndex = i;
-            switch (i) {
+            /*switch (i) {
               case 0:
                 Log.i(TAG, "BTN1");
                 break;
@@ -331,7 +331,7 @@ public class DyIrregularButtonView extends View implements DyBaseView {
               case 2:
                 Log.i(TAG, "BTN3");
                 break;
-            }
+            }*/
             invalidate();
           }
         }
@@ -343,15 +343,15 @@ public class DyIrregularButtonView extends View implements DyBaseView {
             if (null != btnDownIndex && btnDownIndex == i) {
               switch (i) {
                 case 0:
-                  Log.i(TAG, "BTN1");
+                  //Log.i(TAG, "BTN1");
                   if(null != clickListener) clickListener.oneClick();
                   break;
                 case 1:
-                  Log.i(TAG, "BTN2");
+                  //Log.i(TAG, "BTN2");
                   if(null != clickListener) clickListener.twoClick();
                   break;
                 case 2:
-                  Log.i(TAG, "BTN3");
+                  //Log.i(TAG, "BTN3");
                   if(null != clickListener) clickListener.threeClick();
                   break;
               }

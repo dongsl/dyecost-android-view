@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Path;
+
 import androidx.annotation.Nullable;
+
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
@@ -107,9 +109,11 @@ public class DyArcLinearLayout extends LinearLayout implements DyBaseView {
     Path path = new Path();
     path.moveTo(0, yArcStart); //设置起始点
     path.quadTo(dyView.width / 2f, yArcEnd, dyView.width, yArcStart); //设置 控制点和结束点
-    canvas.drawPath(path, dyView.bgPaint); //绘制贝塞尔曲线
+    if (null != dyView.bgPaint) canvas.drawPath(path, dyView.bgPaint); //绘制贝塞尔曲线
     dyView.initBorder();
-    canvas.drawPath(path, dyView.borderPaint); //绘制边框，在原有的弧线上覆盖borderWidth宽度的边框，不会改变整体高度
+    if (null != dyView.borderPaint) {
+      canvas.drawPath(path, dyView.borderPaint); //绘制边框，在原有的弧线上覆盖borderWidth宽度的边框，不会改变整体高度
+    }
   }
 
   @Override

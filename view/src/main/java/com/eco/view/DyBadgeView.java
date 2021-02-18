@@ -224,6 +224,12 @@ public class DyBadgeView extends View implements DyBaseView {
   }
 
   public interface OnDragStateChangedListener {
+    /**
+     *
+     * @param dragState 状态
+     * @param badge 生成的气泡view
+     * @param targetView 气泡的父view
+     */
     void onDragStateChanged(int dragState, Badge badge, View targetView);
   }
 

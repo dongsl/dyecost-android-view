@@ -156,6 +156,113 @@
         </LinearLayout>
       </LinearLayout>
 
+      <!-- loading -->
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="10dp"
+          android:background="@color/light_grey"
+          android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Loading"
+            android:textSize="22dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Loading动画效果基于https://github.com/81813780/AVLoadingIndicatorView"
+            android:textSize="13dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+          <com.eco.view.loading.DyLoadingView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              app:indicatorColor="@color/loading"
+              app:indicatorName="BallSpinFadeLoaderIndicator" />
+
+          <com.eco.view.loading.DyLoadingView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="10dp"
+              android:layout_marginRight="10dp"
+              app:indicatorColor="@color/loading"
+              app:indicatorName="BallRotateIndicator" />
+
+          <com.eco.view.loading.DyLoadingView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              app:indicatorColor="@color/loading"
+              app:indicatorName="LineSpinFadeLoaderIndicator" />
+
+        </LinearLayout>
+      </LinearLayout>
+
+      <!-- loading-dialog -->
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="10dp"
+          android:background="@color/light_grey"
+          android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Loading-Dialog"
+            android:textSize="22dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="后退键关闭loading"
+            android:textSize="13dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Loading动画效果基于https://github.com/81813780/AVLoadingIndicatorView"
+            android:textSize="13dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+          <Button
+              android:id="@+id/loading_default_button"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_margin="5dp"
+              android:text="默认样式" />
+
+          <Button
+              android:id="@+id/loading_style_button"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_margin="5dp"
+              android:text="选择样式" />
+
+          <Button
+              android:id="@+id/loading_style_red_button"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_margin="5dp"
+              android:text="选择样式-红色" />
+
+        </LinearLayout>
+      </LinearLayout>
+
     </LinearLayout>
   </ScrollView>
 </LinearLayout>

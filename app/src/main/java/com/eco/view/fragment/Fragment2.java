@@ -1,6 +1,7 @@
 package com.eco.view.fragment;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,8 @@ import com.eco.view.alert.AlertHandler;
 import com.eco.view.alert.AlertView;
 import com.eco.view.handler.PopHandler;
 import com.eco.view.handler.ToastHandler;
+import com.eco.view.loading.DyLoadingView;
+import com.eco.view.loading.LoadingDialog;
 
 public class Fragment2 extends Fragment {
 
@@ -34,6 +37,10 @@ public class Fragment2 extends Fragment {
   public Button alert_edit_button;
   public Button alert_list_button;
   public Button alert_view_button;
+  //loading
+  public Button loading_default_button;
+  public Button loading_style_button;
+  public Button loading_style_red_button;
 
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -51,6 +58,9 @@ public class Fragment2 extends Fragment {
     alert_edit_button = view.findViewById(R.id.alert_edit_button);
     alert_list_button = view.findViewById(R.id.alert_list_button);
     alert_view_button = view.findViewById(R.id.alert_view_button);
+    loading_default_button = view.findViewById(R.id.loading_default_button);
+    loading_style_button = view.findViewById(R.id.loading_style_button);
+    loading_style_red_button = view.findViewById(R.id.loading_style_red_button);
     init();
     bindEvent();
     return view;
@@ -133,5 +143,11 @@ public class Fragment2 extends Fragment {
         .setCancelText("确认")
         .build()
         .show());
+
+    loading_default_button.setOnClickListener(v -> LoadingDialog.init(context).text("正在进入房间").show());
+    loading_style_button.setOnClickListener(v -> LoadingDialog.init(context).style("SemiCircleSpinIndicator", Color.WHITE).text("正在进入房间").show());
+    loading_style_red_button.setOnClickListener(v -> LoadingDialog.init(context).style("SemiCircleSpinIndicator", Color.RED).text("正在进入房间").show());
+
+
   }
 }

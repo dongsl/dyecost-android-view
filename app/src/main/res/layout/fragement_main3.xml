@@ -3,7 +3,141 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+  <!-- 角标, 消息提示数 -->
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="10dp"
+      android:background="@color/light_grey"
+      android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="角标, 消息提示数"
+        android:textSize="22dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BadgeView是基于 https://github.com/qstumn/BadgeView进行的二次封装"
+        android:textSize="13dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+      <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DY:你收到里好多条消息,拖拽气泡可以标记已阅"
+            android:textSize="16dp" />
+
+        <!-- databinding可以使用 "app:dybv_drag_state_changed_listener='@{(dragState, badge1, targetView) -> setUnseenCount(code, 0l)}'"绑定气泡拖动监听 -->
+        <com.eco.view.DyBadgeView
+            android:id="@+id/badge_view"
+            android:layout_width="50dp"
+            android:layout_height="26dp"
+            app:dy_text="200"
+            app:dy_text_size="10dp" />
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ECO:你收到里1条消息,不支持拖拽"
+            android:textSize="16dp" />
+
+        <com.eco.view.DyBadgeView
+            android:layout_width="50dp"
+            android:layout_height="26dp"
+            app:dy_text="1"
+            app:dy_text_size="10dp" />
+      </LinearLayout>
+
+
+    </LinearLayout>
+
+
+  </LinearLayout>
+
+
+  <!-- 弧形布局, 不规则按钮 -->
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="10dp"
+      android:background="@color/light_grey"
+      android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="弧形布局, 不规则按钮"
+        android:textSize="22dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="1.弧形布局与原生布局的使用方式一致,增加了边框,背景,弧度方向"
+        android:textSize="13dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2.不规则按钮是固定的三个按钮样式,不支持自定义样式,可以配置文字和圆角的样式,右上角按钮的文字是竖着排列的"
+        android:textSize="13dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+      <com.eco.view.DyArcLinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="220dp"
+          android:layout_alignParentBottom="true"
+          android:gravity="center_horizontal|center_vertical"
+          app:dy_bg_color="#76A5CA"
+          app:dy_border_color="#263E4E"
+          app:dy_border_width="6dp"
+          app:dyav_arc_direction="top"
+          app:dyav_arc_height="30dp">
+
+        <com.eco.view.DyIrregularButtonView
+            android:id="@+id/ib_view"
+            android:layout_width="300dp"
+            android:layout_height="150dp"
+            app:dy_fillet_radius="25dp"
+            app:dy_text_size="16dp"
+            app:dy_text_spacing="1dp"
+            app:dyibv_btn_text_1="按钮一"
+            app:dyibv_btn_text_2="按钮二"
+            app:dyibv_btn_text_3="按钮三" />
+
+      </com.eco.view.DyArcLinearLayout>
+
+    </LinearLayout>
+  </LinearLayout>
 
 
 </LinearLayout>
