@@ -2,13 +2,16 @@ package com.eco.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+
 import androidx.databinding.BindingAdapter;
+
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+
 import com.eco.basics.handler.Num;
 import com.eco.view.handler.ViewHandler;
 import com.eco.view.builder.DyLinearLayoutBuilder;
@@ -128,43 +131,47 @@ public class DyBadgeView extends View implements DyBaseView {
           }
         }
       } else {
-        if (currentViewParentChild == view) {
+        if (currentViewParentChild == view) { //计算view距左右view的间距,暂时只做与右view的间距
+          float horizontalMargin = 0;
+          if (i > 0) {
+            View leftView = currentViewParent.getChildAt(i - 1);
+          }
           if (i + 1 < currentViewParentCount) {
-            View nextView = currentViewParent.getChildAt(i + 1);
+            View rightView = currentViewParent.getChildAt(i + 1);
+            horizontalMargin = (rightView.getLeft() - view.getRight()); //目标view与右侧view 水平间距像素
+          }
 
-            float verticalMargin = view.getTop(); //目标view距上方间距 垂直间距像素
-            float topMargin;
-            if (verticalMargin > textSize) {
-              //如果垂直间距 大于 字体大小， 则使用字体大小 并 计算出剩余间距赋予布局
-              topMargin = verticalMargin - textSize;
-              verticalMargin = textSize;
-            } else {
-              topMargin = 0;
-            }
+          float verticalMargin = view.getTop(); //目标view距上方间距 垂直间距像素
+          float topMargin;
+          if (verticalMargin > textSize) {
+            //如果垂直间距 大于 字体大小， 则使用字体大小 并 计算出剩余间距赋予布局
+            topMargin = verticalMargin - textSize;
+            verticalMargin = textSize;
+          } else {
+            topMargin = 0;
+          }
 
-            float horizontalMargin = nextView.getLeft() - view.getRight(); //目标view与右侧view 水平间距像素
-            float rightMargin;
-            float textSize70 = Num.mForF(textSize, 0.7f);
-            if (horizontalMargin > textSize70) {
-              //如果水平间距 大于 字体大小， 则使用字体大小 并 计算出剩余间距赋予布局
-              rightMargin = horizontalMargin - textSize70;
-              horizontalMargin = textSize70;
-            } else {
-              rightMargin = 0;
-            }
+          float rightMargin;
+          float textSize70 = Num.mForF(textSize, 0.7f);
+          if (horizontalMargin > textSize70) {
+            //如果水平间距 大于 字体大小， 则使用字体大小 并 计算出剩余间距赋予布局
+            rightMargin = horizontalMargin - textSize70;
+            horizontalMargin = textSize70;
+          } else {
+            rightMargin = 0;
+          }
 
-            currentViewParent.removeView(view);//在目标view父级布局中移出 目标view（下面重新生成）
-            ViewHandler.setLayoutParams(view, 0, 0, 0, 0); //移出目标view的所有间距
-            float width = view.getLayoutParams().width + horizontalMargin; //布局宽度（目标VIEW宽度+水平间距）
-            float height = view.getLayoutParams().height + verticalMargin; //布局高度（目标VIEW高度+垂直间距）
-            linearLayout = DyLinearLayoutBuilder.init(context).orientation(LinearLayout.VERTICAL)
+          currentViewParent.removeView(view);//在目标view父级布局中移出 目标view（下面重新生成）
+          ViewHandler.setLayoutParams(view, 0, 0, 0, 0); //移出目标view的所有间距
+          float width = view.getLayoutParams().width + horizontalMargin; //布局宽度（目标VIEW宽度+水平间距）
+          float height = view.getLayoutParams().height + verticalMargin; //布局高度（目标VIEW高度+垂直间距）
+          linearLayout = DyLinearLayoutBuilder.init(context).orientation(LinearLayout.VERTICAL)
               .layout(v -> v.wh(width, height).margins(0, (int) topMargin, (int) rightMargin, 0).gravity(Gravity.LEFT | Gravity.BOTTOM))
               .build(view); //内容布局
-            linearLayout.setId(R.id.badge_view_parent_layout);
-            currentViewParent.addView(linearLayout, 0);
-            badge = new QBadgeView(context).bindTarget(linearLayout); //将气泡放到布局里
-            break;
-          }
+          linearLayout.setId(R.id.badge_view_parent_layout);
+          currentViewParent.addView(linearLayout, 0);
+          badge = new QBadgeView(context).bindTarget(linearLayout); //将气泡放到布局里
+          break;
         }
       }
     }
@@ -225,9 +232,8 @@ public class DyBadgeView extends View implements DyBaseView {
 
   public interface OnDragStateChangedListener {
     /**
-     *
-     * @param dragState 状态
-     * @param badge 生成的气泡view
+     * @param dragState  状态
+     * @param badge      生成的气泡view
      * @param targetView 气泡的父view
      */
     void onDragStateChanged(int dragState, Badge badge, View targetView);
