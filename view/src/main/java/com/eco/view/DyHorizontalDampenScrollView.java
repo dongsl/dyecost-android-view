@@ -11,7 +11,7 @@ import android.widget.HorizontalScrollView;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 /**
- * 水平方左右向滑动阻尼效果
+ * 水平方向左右向滑动阻尼效果
  * -----------------demo-----------------
  * <HorizontalDampenScrollView
  * android:layout_width="match_parent"

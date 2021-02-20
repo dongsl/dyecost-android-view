@@ -214,7 +214,6 @@
                   app:dy_text_color="#ffffff" />
             </com.eco.view.DyLinearLayout>
 
-
           </LinearLayout>
 
           <com.eco.view.DyLineView
@@ -223,8 +222,7 @@
               android:layout_margin="10dp"
               app:dy_bg_color="#2980DF"
               app:dy_fillet_radius="5dp"
-              app:dy_shape="fillet"
-              app:dylv_shape="horizontal" />
+              app:dy_shape="fillet" />
 
           <com.eco.view.DyLinearLayout
               android:layout_width="match_parent"
@@ -233,7 +231,7 @@
               android:layout_weight="0.5"
               android:gravity="center"
               android:orientation="vertical"
-              android:padding="10dp"
+              android:padding="20dp"
               app:dy_bg_color="#111111"
               app:dy_bg_color_alpha="180"
               app:dy_border_width="3dp"
@@ -268,7 +266,6 @@
 
         </LinearLayout>
       </LinearLayout>
-
 
       <!-- 弧形布局, 不规则按钮 -->
       <LinearLayout

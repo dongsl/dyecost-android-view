@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+
+
+      <!-- 箭头标签,横幅,锦旗 -->
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="10dp"
+          android:background="@color/light_grey"
+          android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="箭头标签,横幅,锦旗"
+            android:textSize="22dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="DyMultipleView包含三种样式(箭头标签,横幅,锦旗), view是基于LinearLayout可以在view内嵌套任意view, 案例中是将三种样式组合成一个锦旗，所有样式都可以单独使用"
+            android:textSize="13dp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+          <!-- 锦旗 -->
+          <com.eco.view.DyMultipleView
+              android:layout_width="110dp"
+              android:layout_height="180dp"
+              android:layout_centerHorizontal="true"
+              android:layout_marginTop="30dp"
+              android:gravity="center"
+              android:orientation="vertical"
+              android:paddingBottom="68dp"
+              app:dy_bg_color="#7528FF"
+              app:dy_border_color="#4C00B0"
+              app:dy_border_width="6dp"
+              app:dymv_shape="banner_silk">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="锦旗-锦旗"
+                android:textSize="18dp" />
+
+            <com.eco.view.DyMultipleView
+                android:layout_width="200dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:rotation="-6"
+                app:dy_bg_color="#630008"
+                app:dy_border_color_end="#FA9916"
+                app:dy_border_color_gd="vertical"
+                app:dy_border_color_start="#FB1D1B"
+                app:dy_border_width="3dp"
+                app:dy_text="7折"
+                app:dy_text_bold="true"
+                app:dy_text_color_end="#FA9916"
+                app:dy_text_color_gd="vertical"
+                app:dy_text_color_start="#FB1D1B"
+                app:dy_text_location="center"
+                app:dymv_shape="arrow_label" />
+
+            <com.eco.view.DyMultipleView
+                android:layout_width="80dp"
+                android:layout_height="35dp"
+                android:rotation="-6"
+                app:dy_bg_color="#630008"
+                app:dy_border_color_end="#FA9916"
+                app:dy_border_color_gd="vertical"
+                app:dy_border_color_start="#FB1D1B"
+                app:dy_border_width="3dp"
+                app:dy_text="5折"
+                app:dy_text_bold="true"
+                app:dy_text_color_end="#FA9916"
+                app:dy_text_color_gd="vertical"
+                app:dy_text_color_start="#FB1D1B"
+                app:dy_text_location="center"
+                app:dymv_shape="arrow_label" />
+
+          </com.eco.view.DyMultipleView>
+
+          <!-- 横幅 -->
+          <com.eco.view.DyMultipleView
+              android:layout_width="200dp"
+              android:layout_height="50dp"
+              android:layout_centerHorizontal="true"
+              app:dy_bg_color="#FF3A6A"
+              app:dy_border_color_end="#FA9916"
+              app:dy_border_color_gd="vertical"
+              app:dy_border_color_start="#FB1D1B"
+              app:dy_border_width="3dp"
+              app:dy_fillet_radius="10dp"
+              app:dy_shape="fillet"
+              app:dy_text="横幅"
+              app:dy_text_bold="true"
+              app:dy_text_color="#ffffff"
+              app:dy_text_location="center"
+              app:dymv_shape="banner_i" />
+
+        </RelativeLayout>
+
+      </LinearLayout>
+
+
+    </LinearLayout>
+  </ScrollView>
+
+</LinearLayout>
