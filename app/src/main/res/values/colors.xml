@@ -4,4 +4,6 @@
   <color name="light_grey_high">#a8a8a8</color> <!-- 浅灰色 -->
   <color name="light_grey">#d3d3d3</color> <!-- 浅灰色 -->
   <color name="gainsboro">#e2e2e2</color> <!-- 亮灰色 -->
+  <color name="black">#000000</color> <!-- 亮灰色 -->
+  <color name="bg">#158EEC</color>
 </resources>

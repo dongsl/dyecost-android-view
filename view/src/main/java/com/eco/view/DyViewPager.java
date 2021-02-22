@@ -11,7 +11,7 @@ import android.view.MotionEvent;
 
 /**
  * DyViewPager
- * 1.在使用viewPager的地方替换为DyNoScrollViewPager就可以
+ * 1.在使用viewPager的地方替换为DyViewPager就可以
  */
 public class DyViewPager extends ViewPager {
 

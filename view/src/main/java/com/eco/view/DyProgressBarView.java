@@ -2,7 +2,9 @@ package com.eco.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+
 import androidx.databinding.BindingAdapter;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -10,8 +12,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.RectF;
+
 import androidx.annotation.FloatRange;
 import androidx.annotation.Nullable;
+
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -44,6 +48,7 @@ import lombok.Getter;
  * 11.调用set方法时会根据dypbv_ratio_mode类型对比例进行增加或减少
  * 12.dypbv_direction=ALONG时"横向进度条"是从左向右增加或从右向左减少,"圆形进度条"是从顶部0°开始顺时针增加或从ratio°向0°减少
  * 13.文字大小会根据text+ratio自动设置,如果手动设置的textSize小于自动计算的文字大小,则使用手动设置的
+ * 14.dypbv_ratio_mode="desc"时调用startCountDownTimer(A, B)方法时A>0,A<=B才会有效果,"incr"时A<B
  * -----------------demo-----------------
  * <DyProgressBarView
  * android:layout_width="match_parent"
@@ -76,7 +81,7 @@ public class DyProgressBarView extends View implements DyBaseView {
   public DyView dyView;
   public RectF viewRect;
   private DyCountDownTimerBuilder timerBuilder;
-  private long refreshInterval = 30;
+  private long refreshInterval = 10;
   //形状
   private boolean isCircular = Boolean.FALSE;
   private int pbShape = DyViewState.DyPbll.SHAPE_TYPE.RECTANGLE_H.v();
@@ -157,7 +162,11 @@ public class DyProgressBarView extends View implements DyBaseView {
       pbRatioMax = typedArray.getInteger(R.styleable.dy_pb_view_dypbv_ratio_max, 100); //进度条比例
       pbRatio = typedArray.getInteger(R.styleable.dy_pb_view_dypbv_ratio, 0); //进度条比例
       pbRatioType = typedArray.getInt(R.styleable.dy_pb_view_dypbv_ratio_type, DyViewState.DyPbll.PB_RATIO_TYPE.PERCENTAGE.v()); //进度条比例
-      pbRatioMode = typedArray.getInt(R.styleable.dy_pb_view_dypbv_ratio_mode, DyViewState.DyPbll.PB_RATIO_MODE.INCR.v()); //进度条比例
+      if (pbRatioType == DyViewState.DyPbll.PB_RATIO_TYPE.PERCENTAGE.v()) {
+        pbRatioMode = DyViewState.DyPbll.PB_RATIO_MODE.INCR.v();
+      } else {
+        pbRatioMode = typedArray.getInt(R.styleable.dy_pb_view_dypbv_ratio_mode, DyViewState.DyPbll.PB_RATIO_MODE.INCR.v()); //进度条比例
+      }
       pbAlpha = typedArray.getInteger(R.styleable.dy_pb_view_dypbv_alpha, DyViewState.DyPbll.PB_ALPHA); //进度条透明度
       //圆形进度条
       pbOuterRingBgColor = typedArray.getColor(R.styleable.dy_pb_view_dypbv_outer_ring_bg_color, DyViewState.DyPbll.PB_COLOR); //外环背景色
@@ -297,8 +306,12 @@ public class DyProgressBarView extends View implements DyBaseView {
       if (dyView.openText) {
         String pbTextMax = pbText = dyView.text.toString();
         if (!dyView.isFixedText) {
-          pbText = dyView.text + ":%s";
-          pbTextMax = dyView.text + ":" + (DyViewState.DyPbll.PB_RATIO_TYPE.PERCENTAGE.v().equals(pbRatioType) ? pbRatio + "%" : Num.dForInt(pbRatio, 1000));
+          pbText = "%s";
+          pbTextMax = (DyViewState.DyPbll.PB_RATIO_TYPE.PERCENTAGE.v().equals(pbRatioType) ? pbRatio + "%" : Num.dForInt(pbRatio, 1000)).toString();
+          if (null != dyView.text && StringHandler.isNotBlank(dyView.text.toString().trim())) {
+            pbText = dyView.text + ":" + pbText;
+            pbTextMax = dyView.text + ":" + pbTextMax;
+          }
         }
         float textWidth = Num.mForF(openPbImage ? dyView.viewRect.width() - dyView.viewSizeMin : dyView.viewRect.width(), 0.8f);
         float textHeight = Num.mForF(dyView.viewRect.height(), 0.5f);
@@ -536,8 +549,12 @@ public class DyProgressBarView extends View implements DyBaseView {
       if (dyView.openText) {
         String pbTextMax = pbText = dyView.text.toString();
         if (!dyView.isFixedText) {
-          pbText = dyView.text + ":%s";
-          pbTextMax = dyView.text + ":" + (DyViewState.DyPbll.PB_RATIO_TYPE.PERCENTAGE.v().equals(pbRatioType) ? pbRatio + "%" : Num.dForInt(pbRatio, 1000));
+          pbText = "%s";
+          pbTextMax = (DyViewState.DyPbll.PB_RATIO_TYPE.PERCENTAGE.v().equals(pbRatioType) ? pbRatio + "%" : Num.dForInt(pbRatio, 1000)).toString();
+          if (null != dyView.text && StringHandler.isNotBlank(dyView.text.toString().trim())) {
+            pbText = dyView.text + ":" + pbText;
+            pbTextMax = dyView.text + ":" + pbTextMax;
+          }
         }
         float size = Num.mForF(pbInnerRingSize, 0.8f);
         dyView.textLocation = DyViewState.TEXT_LOCATION.CENTER.v();
@@ -581,7 +598,7 @@ public class DyProgressBarView extends View implements DyBaseView {
   }
 
   /**
-   * 设置进度条进度
+   * 设置进度条进度, 可以设置进度条样式和倒计时样式的进度
    * 1.this.pbRatio>100时候不会重新绘制
    * 2.参数pbRatio>100时会按照100进行绘制一次
    *
@@ -604,6 +621,9 @@ public class DyProgressBarView extends View implements DyBaseView {
    * 启动进度条倒计时
    * 1.incr = pbRatio 到 pbRatioMax(100%)
    * 2.decr = pbRatioMax 到 pbRatio (0%)
+   *
+   * @param ratio    单位: 秒
+   * @param ratioMax 单位: 秒
    */
   public void startCountDownTimer(Long ratio, Long ratioMax) {
     if (!isRatioSeconds) return; //只有比例类型为秒时，才可以使用倒计时
@@ -612,25 +632,25 @@ public class DyProgressBarView extends View implements DyBaseView {
     if (null != ratioMax) this.pbRatioMax = ratioMax * 1000;
     long millisInFuture = isIncr ? pbRatioMax - pbRatio : pbRatio;
     timerBuilder = DyCountDownTimerBuilder.init(getContext())
-      .millisInFuture(millisInFuture)
-      .countDownInterval(refreshInterval)
-      .callBack(new DyCountDownTimerCallBack() {
-        @Override
-        public void tick(Long millis) {
-          setPbRatio(isIncr ? pbRatioMax - millis : millis);
-        }
+        .millisInFuture(millisInFuture)
+        .countDownInterval(refreshInterval)
+        .callBack(new DyCountDownTimerCallBack() {
+          @Override
+          public void tick(Long millis) {
+            setPbRatio(isIncr ? pbRatioMax - millis : millis);
+          }
 
-        @Override
-        public void finish() {
-          setPbRatio(isIncr ? pbRatioMax : 0);
-        }
-      }).build();
+          @Override
+          public void finish() {
+            setPbRatio(isIncr ? pbRatioMax : 0);
+          }
+        }).build();
     timerBuilder.start();
 
   }
 
   /**
-   * 设置进度条进度
+   * 设置进度条样式进度
    *
    * @param pbRatio
    */
@@ -640,7 +660,7 @@ public class DyProgressBarView extends View implements DyBaseView {
   }
 
   /**
-   * 设置进度条进度
+   * 设置进度条样式进度
    * 1.修改文字
    *
    * @param text
@@ -652,7 +672,17 @@ public class DyProgressBarView extends View implements DyBaseView {
   }
 
   /**
+   * 重置
+   *
+   * @param pbRatio
+   */
+  public void reset(long pbRatio) {
+    setPbRatio(pbRatio);
+  }
+
+  /**
    * 递增进度条进度 - 渐变
+   * 最终结果: pbRatio += ratio
    *
    * @param ratio
    */

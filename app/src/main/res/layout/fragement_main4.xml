@@ -16,8 +16,6 @@
         android:orientation="vertical">
 
 
-
-
       <!-- 箭头标签,横幅,锦旗 -->
       <LinearLayout
           android:layout_width="match_parent"
@@ -36,12 +34,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="DyMultipleView包含三种样式(箭头标签,横幅,锦旗), view是基于LinearLayout可以在view内嵌套任意view, 案例中是将三种样式组合成一个锦旗，所有样式都可以单独使用"
+            android:text="1.DyMultipleView包含三种样式(箭头标签,横幅,锦旗), 可以单独使用,也可以组合使用"
             android:textSize="13dp"
-            android:textStyle="bold" />
+             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="2.DyMultipleView继承LinearLayout可以在view内嵌套任意view, 案例中是将三种样式组合成一个锦旗"
+            android:textSize="13dp"
+             />
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
           <!-- 锦旗 -->
@@ -121,6 +127,219 @@
               app:dymv_shape="banner_i" />
 
         </RelativeLayout>
+
+      </LinearLayout>
+
+      <!-- 进度条, 倒计时 -->
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="10dp"
+          android:background="@color/light_grey"
+          android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="进度条, 倒计时"
+            android:textSize="22dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="1.进度条"
+            android:textSize="13dp"
+             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="2.DyMultipleView继承LinearLayout可以在view内嵌套任意view, 案例中是将三种样式组合成一个锦旗"
+            android:textSize="13dp"
+             />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+          <!-- 进度条 -->
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="10dp"
+              android:layout_marginRight="10dp"
+              android:gravity="center"
+              android:orientation="vertical">
+
+            <com.eco.view.DyProgressBarView
+                android:id="@+id/exp_pb"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginBottom="5dp"
+                app:dy_bg_color="#000000"
+                app:dy_bg_color_alpha="128"
+                app:dy_border_color="#808080"
+                app:dy_border_width="2dp"
+                app:dy_fillet_radius="3dp"
+                app:dy_shape="fillet"
+                app:dypbv_color="#127BD1"
+                app:dypbv_cut_color="#808080"
+                app:dypbv_cut_width="1dp"
+                app:dypbv_ratio="30"
+                app:dypbv_ratio_max="100"
+                app:dypbv_ratio_mode="incr"
+                app:dypbv_ratio_type="percentage"
+                app:dypbv_shape="rectangle_h" />
+
+            <!-- 开启databinding后可以使用 app:dypbv_image_path="@{imageUrl}" 绑定网络图片 -->
+            <com.eco.view.DyProgressBarView
+                android:id="@+id/exp_image_pb"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginBottom="10dp"
+                app:dy_bg_color="#000000"
+                app:dy_bg_color_alpha="128"
+                app:dy_border_color="#808080"
+                app:dy_border_width="2dp"
+                app:dy_fillet_radius="3dp"
+                app:dy_shape="fillet"
+                app:dy_text="奖励目标"
+                app:dy_text_bold="true"
+                app:dy_text_color="#000000"
+                app:dy_text_location="start"
+                app:dypbv_color="#127BD1"
+                app:dypbv_cut_color="#808080"
+                app:dypbv_cut_width="1dp"
+                app:dypbv_image_resource="@drawable/dy_ic_default"
+                app:dypbv_ratio='30'
+                app:dypbv_shape="rectangle_h_image" />
+
+            <com.eco.view.DyProgressBarView
+                android:id="@+id/loading_pb"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_alignParentBottom="true"
+                app:dy_bg_color="#000000"
+                app:dy_bg_color_alpha="128"
+                app:dy_border_color="#808080"
+                app:dy_border_width="2dp"
+                app:dy_fillet_radius="3dp"
+                app:dy_shape="fillet"
+                app:dy_text_bold="true"
+                app:dy_text_color="#000000"
+                app:dy_text_location="center_top_half"
+                app:dypbv_color="#127BD1" />
+
+            <com.eco.view.DyTextView
+                android:id="@+id/pb_start"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="开始"
+                android:textColor="@color/white"
+                
+                app:dy_bg_color="#F6B510"
+                app:dy_border_width="1.5dp"
+                app:dy_down_resize_ratio="0.9"
+                app:dy_down_style="resize"
+                app:dy_fillet_radius="8dp"
+                app:dy_resize_view="false"
+                app:dy_shadow_color="#A87D0C"
+                app:dy_shape="fillet" />
+          </LinearLayout>
+
+          <!-- 倒计时 -->
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center"
+              android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+              <com.eco.view.DyProgressBarView
+                  android:id="@+id/down_time_pb"
+                  android:layout_width="120dp"
+                  android:layout_height="120dp"
+                  android:layout_marginRight="5dp"
+                  app:dy_bg_color="#158EEC"
+                  app:dy_border_width="1.5dp"
+                  app:dy_fixed_text="true"
+                  app:dy_text="标题"
+                  app:dy_text_bold="true"
+                  app:dypbv_color="#FFAF40"
+                  app:dypbv_direction="inverse"
+                  app:dypbv_outer_ring_bg_color="#ffffff"
+                  app:dypbv_outer_ring_width="0dp"
+                  app:dypbv_ratio="0"
+                  app:dypbv_ratio_max="10"
+                  app:dypbv_ratio_mode="decr"
+                  app:dypbv_ratio_type="seconds"
+                  app:dypbv_shape="circular" />
+
+              <com.eco.view.DyProgressBarView
+                  android:id="@+id/down_time_pb1"
+                  android:layout_width="120dp"
+                  android:layout_height="120dp"
+                  android:layout_marginRight="5dp"
+                  app:dy_bg_color="#158EEC"
+                  app:dy_border_width="1.5dp"
+                  app:dy_text=" "
+                  app:dy_text_bold="true"
+                  app:dypbv_color="#FFAF40"
+                  app:dypbv_direction="along"
+                  app:dypbv_outer_ring_bg_color="#ffffff"
+                  app:dypbv_outer_ring_width="0dp"
+                  app:dypbv_ratio_mode="decr"
+                  app:dypbv_ratio_type="percentage"
+                  app:dypbv_shape="circular" />
+
+              <com.eco.view.DyProgressBarView
+                  android:id="@+id/down_time_pb2"
+                  android:layout_width="120dp"
+                  android:layout_height="120dp"
+                  android:layout_marginRight="5dp"
+                  app:dy_bg_color="#158EEC"
+                  app:dy_border_width="1.5dp"
+                  app:dy_text="标题"
+                  app:dy_text_bold="true"
+                  app:dypbv_color="#FFAF40"
+                  app:dypbv_direction="inverse"
+                  app:dypbv_ratio_mode="incr"
+                  app:dypbv_ratio_type="seconds"
+                  app:dypbv_shape="circular" />
+
+
+            </LinearLayout>
+
+            <com.eco.view.DyTextView
+                android:id="@+id/pb_start2"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="开始倒计时"
+                android:textColor="@color/white"
+                
+                app:dy_bg_color="#F6B510"
+                app:dy_border_width="1.5dp"
+                app:dy_down_resize_ratio="0.9"
+                app:dy_down_style="resize"
+                app:dy_fillet_radius="8dp"
+                app:dy_resize_view="false"
+                app:dy_shadow_color="#A87D0C"
+                app:dy_shape="fillet" />
+          </LinearLayout>
+        </LinearLayout>
 
       </LinearLayout>
 

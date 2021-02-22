@@ -33,17 +33,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="BadgeView是基于 https://github.com/qstumn/BadgeView进行的二次封装"
+            android:text="1.BadgeView是基于 https://github.com/qstumn/BadgeView进行的二次封装"
             android:textSize="13dp"
-            android:textStyle="bold" />
+             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="角标: 推荐目标view在父布局中的位置是0，防止重新创建view时不好处理新view的位置"
+            android:text="2.角标: 推荐目标view在父布局中的位置是0，防止重新创建view时不好处理新view的位置"
             android:textSize="13dp"
-            android:textStyle="bold" />
+             />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -114,28 +114,59 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="DyLinearLayout, DyTextView, DyEditText, DyImageView, DyLineView"
+            android:text="DyLinearLayout, DyRelativeLayout, DyTextView, DyEditText, DyImageView, DyLineView"
             android:textSize="22dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="1.弧形布局与原生布局的使用方式一致,增加了边框,背景,弧度方向"
+            android:text="1.DyLinearLayout, DyRelativeLayout支持DyView中的所有属性,在使用LinearLayout或RelativeLayout时与dy-view嵌套时部分事件会有冲突,可以使用DyLinearLayout, DyRelativeLayout代替"
             android:textSize="13dp"
-            android:textStyle="bold" />
+             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2.不规则按钮是固定的三个按钮样式,不支持自定义样式,可以配置文字和圆角的样式,右上角按钮的文字是竖着排列的"
+            android:layout_marginBottom="5dp"
+            android:text="2.DyLineView想用横线或竖线只需要调整width和height即可,竖线width=10,height=match_parent或dp"
             android:textSize="13dp"
-            android:textStyle="bold" />
+             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="3.DyImageView自带的属性不支持加载网络图片需要配合ImageHandler.loadImage()使用前需要引入com.github.dongsl:dyecost-android-basics"
+            android:textSize="13dp"
+             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="注.DyLinearLayout, DyRelativeLayout, DyTextView, DyEditText, DyImageView这五个view也可以使用java代码进行builder(com.eco.view.builder.DyImageViewBuilder)"
+            android:textSize="13dp"
+             />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+          <com.eco.view.DyRelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="50dp"
+              android:layout_marginBottom="5dp"
+              android:layout_weight="0.5"
+              android:gravity="center"
+              android:orientation="vertical"
+              android:padding="10dp"
+              app:dy_bg_color="#2196F3"
+              app:dy_bg_color_alpha="128"
+              app:dy_border_width="3dp"
+              app:dy_fillet_radius="30dp"
+              app:dy_shape="fillet" />
 
           <LinearLayout
               android:layout_width="match_parent"
@@ -287,14 +318,14 @@
             android:layout_marginBottom="5dp"
             android:text="1.弧形布局与原生布局的使用方式一致,增加了边框,背景,弧度方向"
             android:textSize="13dp"
-            android:textStyle="bold" />
+             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2.不规则按钮是固定的三个按钮样式,不支持自定义样式,可以配置文字和圆角的样式,右上角按钮的文字是竖着排列的"
             android:textSize="13dp"
-            android:textStyle="bold" />
+             />
 
         <LinearLayout
             android:layout_width="match_parent"

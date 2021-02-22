@@ -109,7 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="2.支持头部图片放大++"
+                android:text="2.支持头部图片放大++D"
                 android:textSize="18dp" />
 
           </LinearLayout>

@@ -191,6 +191,11 @@ public class DyTabPageLayout extends LinearLayout implements DyBaseView {
     return this;
   }
 
+  /**
+   *
+   * @param titleTextSize px
+   * @return
+   */
   public DyTabPageLayout setTitleTextSize(float titleTextSize) {
     this.titleTextSize = titleTextSize;
     return this;

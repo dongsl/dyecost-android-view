@@ -14,6 +14,58 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+      <!-- tab标签 -->
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="10dp"
+          android:background="@color/light_grey"
+          android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="tab标签"
+            android:textSize="22dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="1.可以自定义标签的头和尾,DyView中的大部分属性都可以使用"
+            android:textSize="13dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2.dytpv_load_page_limit可以设置加载的页数,默认显示下标0的fragement, dytpv_load_page_limit=2时会加载下标1和2也页面, 默认是0只会加载当前显示的页面"
+            android:textSize="13dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+          <com.eco.view.DyTabPageLayout
+              android:id="@+id/tab"
+              android:layout_width="match_parent"
+              android:layout_height="200dp"
+              app:dy_bg_color="#000000"
+              app:dy_bg_color_alpha="128"
+              app:dy_down_color="#158EEC"
+              app:dy_down_color_alpha="255"
+              app:dy_down_style="background"
+              app:dy_open_selected="true"
+              app:dy_selected="false"
+              app:dytpv_load_page_limit="2"
+              app:dytpv_lr_scroll="false" />
+
+        </LinearLayout>
+
+
+      </LinearLayout>
+
       <!-- pop,toast -->
       <LinearLayout
           android:layout_width="match_parent"
@@ -262,6 +314,83 @@
 
         </LinearLayout>
       </LinearLayout>
+
+      <!-- 滑动按钮, 三角形 -->
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="10dp"
+          android:background="@color/light_grey"
+          android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="滑动按钮, 三角形"
+            android:textSize="22dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="1.滑动按钮所有属性都是固定的不支持自定义颜色样式等"
+            android:textSize="13dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2.三角形可以自定义大小颜色(聊天消息气泡, pop窗口都可以用三角形与按钮连接)"
+            android:textSize="13dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+          <com.eco.view.DySlideButtonView
+              android:layout_width="wrap_content"
+              android:layout_height="30dp"
+              android:layout_marginRight="10dp" />
+
+          <com.eco.view.DySlideButtonView
+              android:id="@+id/slide"
+              android:layout_width="wrap_content"
+              android:layout_height="30dp"
+              android:layout_marginRight="10dp" />
+
+          <com.eco.view.DyTriangleView
+              android:layout_width="20dp"
+              android:layout_height="20dp"
+              android:layout_marginRight="5dp"
+              app:dy_bg_color="#8BD966"
+              app:dytrv_direction="left" />
+
+          <com.eco.view.DyTriangleView
+              android:layout_width="20dp"
+              android:layout_height="20dp"
+              android:layout_marginRight="5dp"
+              app:dy_bg_color="#4CAF50"
+              app:dytrv_direction="right" />
+
+          <com.eco.view.DyTriangleView
+              android:layout_width="20dp"
+              android:layout_height="20dp"
+              android:layout_marginRight="5dp"
+              app:dy_bg_color="#03A9F4"
+              app:dytrv_direction="top" />
+
+          <com.eco.view.DyTriangleView
+              android:layout_width="20dp"
+              android:layout_height="20dp"
+              android:layout_marginRight="5dp"
+              app:dy_bg_color="#2196F3"
+              app:dytrv_direction="bottom" />
+
+        </LinearLayout>
+
+      </LinearLayout>
+
 
     </LinearLayout>
   </ScrollView>

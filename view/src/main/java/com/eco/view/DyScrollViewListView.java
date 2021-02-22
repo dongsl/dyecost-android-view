@@ -6,7 +6,7 @@ import android.widget.ListView;
 
 /**
  * 1.ListView与ScrollView一起使用的时候会导致 ListView内容显示不全, 此view就是解决显示不全问题的
- * 2.也算是变相的禁止ListView滑动，因为在显示ListView时已经显示出所有内容了
+ * 2.也算是变相的禁止ListView滑动，因为在显示ListView时已经加载出所有内容了
  */
 public class DyScrollViewListView extends ListView {
   public DyScrollViewListView(Context context) {
